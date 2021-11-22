@@ -1,5 +1,11 @@
 {% extends 'base.html' %}
 {% block title %}Последние отзывы{% endblock %}
 {% block content %}
-   Ляляля тополя.....
+   {% if reviews_list %}
+      {% for elem in reviews_list %}
+          <p><a href = "{{elem.id}}">{{elem.review_title}}</a></p>
+      {% endfor %}
+   {% else %}
+      Статьи не найдены
+   {% endif %}
 {% endblock %}
