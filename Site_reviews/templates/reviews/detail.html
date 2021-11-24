@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}{{review.review_title}}{% endblock %}
+{% block style %}
+<link href="{% static "reviews/CSS/css.css" %}" rel="stylesheet" type="text/css">
+{% endblock  %}
 {% block content %}
     <h1>{{review.review_title}}</h1>
     <p>{{review.review_text}}</p>
@@ -29,4 +32,6 @@
     {% else %}
         Чтобы читать и оставлять комментарии необходимо войти в аккаунт
     {% endif %}
+
+
 {% endblock %}
