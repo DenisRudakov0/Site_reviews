@@ -1,0 +1,10 @@
+.menu {
+    width: 100%;
+    height: 200px;
+    background-color: aqua;
+    color: aquamarine;
+}
+
+body {
+    background: red;
+}
