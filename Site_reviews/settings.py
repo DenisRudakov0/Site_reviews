@@ -34,6 +34,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'social_django',
     'account.apps.AccountConfig',
     'reviews.apps.ReviewsConfig',
     'django.contrib.auth',
@@ -53,6 +54,16 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+AUTHENTICATION_BACKENDS = [
+    'social_core.backends.facebook.FacebookOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+    'account.authentication.EmailAuthBackend',
+]
+
+SOCIAL_AUTH_FACEBOOK_KEY = '1399693267093941' # Facebook App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = 'c491b26045416a744371a814234a2f46' # Facebook App Secret
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
 
 ROOT_URLCONF = 'Site_reviews.urls'
 
