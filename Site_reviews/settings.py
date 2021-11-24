@@ -62,8 +62,8 @@ AUTHENTICATION_BACKENDS = [
     'account.authentication.EmailAuthBackend',
 ]
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '228162488259-qoqp86mj492ckavg71qeb5sbmka40ict.apps.googleusercontent.com' # Google Consumer Key
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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' # Google Consumer Secret
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '228162488259-ldoa3kof4lvh6u1r555i7plsisjo3bee.apps.googleusercontent.com' # Google Consumer Key
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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' # Google Consumer Secret
 
 SOCIAL_AUTH_FACEBOOK_KEY = '1399693267093941' # Facebook App ID
 SOCIAL_AUTH_FACEBOOK_SECRET = 'c491b26045416a744371a814234a2f46' # Facebook App Secret
