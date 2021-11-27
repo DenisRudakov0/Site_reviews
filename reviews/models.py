@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Review(models.Model):
     review_title = models.CharField('название статьи', max_length = 200)
@@ -18,3 +19,16 @@ class Comment(models.Model):
     class Meta:
         verbose_name = 'Комментарий'
         verbose_name_plural = 'Комментарии'
+
+class Raiting(models.Model):
+    RATE_CHOISES = (
+        (1, 'one'),
+        (2, 'two'),
+        (3, 'three'),
+        (4, 'four'),
+        (5, 'five'),
+    )
+    review_raiting = models.ForeignKey(Review, on_delete=models.CASCADE)
+    user_raiting = models.ForeignKey(User, on_delete=models.CASCADE)
+    like = models.BooleanField(default=False)
+    raite = models.PositiveSmallIntegerField(choices=RATE_CHOISES)
