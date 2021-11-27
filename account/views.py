@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import LoginForm, UserRegistrationForm
 
 def index(request):
-    return render(request, 'reviews/index.html')
+    return render(request, 'account/profile.html')
 
 def register(request):
     if request.method == 'POST':

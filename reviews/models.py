@@ -3,8 +3,9 @@ from django.db import models
 class Review(models.Model):
     review_title = models.CharField('название статьи', max_length = 200)
     review_text = models.TextField('текст статьи')
+    image = models.ImageField(upload_to='images/', blank=True)
     pub_date = models.DateTimeField('дата публикации')
-
+   
     class Meta:
         verbose_name = 'Отзыв'
         verbose_name_plural = 'Отзывы'

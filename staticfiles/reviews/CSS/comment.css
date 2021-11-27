@@ -62,3 +62,7 @@ body {
     color: green;
     cursor: pointer
 }
+
+img {
+    width: 200px;
+}

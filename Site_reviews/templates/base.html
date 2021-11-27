@@ -10,63 +10,35 @@
     {% block style %}{% endblock  %}
 </head>
 <body>
+
     <div id="header">
-    
-    {% if request.user.is_authenticated %}
-        Hello {{ request.user.username }},
-        <a href="{% url "logout" %}">Logout</a>
-    {% else %}
-        <a href="{% url "login" %}">Log-in</a>
-    {% endif %}
+        <span>
+        <a href = "http://127.0.0.1:8000/"><img src = "https://res.cloudinary.com/djx4fzf78/image/upload/v1638012297/image/Logo_cssfqj.png" width = "300px"></img></a>
+        </span>
+        <span>
+            <input type="search" placeholder="Search" aria-label="Поиск" width = "400px">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </span>  
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Главная</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
-                    Dropdown
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                </li>
-            </ul>
-            <form class="d-flex">
-                <input class="form-control mr-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-            </div>
-        </div>
-    </nav>
-
-        
-
+        {% if request.user.is_authenticated %}
+            Hello {{ request.user.username }},
+            <a href="{% url "logout" %}">Logout</a>
+        {% else %}
+            <a href="http://127.0.0.1:8000/accounts/register/">Регистрация</a>
+            <a href="{% url "login" %}">Вход</a>
+        {% endif %}     
     </div>
 
     <div class = "text" width = "260px">
+        {% block navigati %}
         <div id="sidebar">
             <p>Плов по-фергански</p><p>Плов узбекский</p>
             <p>Плов сибирский</p><p>Плов итальянский</p>
             <p>Плов эстонский</p><p>Плов по-американски</p>
             <p>Плов по-индейски</p>
         </div>
+        {% endblock  %}>
+        
         <div id="content">    
             {% block content %}{% endblock %}
         </div>

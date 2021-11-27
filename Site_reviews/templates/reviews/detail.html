@@ -7,6 +7,8 @@
 {% block content %}
     <h1>{{review.review_title}}</h1>
     <p>{{review.review_text}}</p>
+    <p><img src = "https://res.cloudinary.com/djx4fzf78/image/upload/v1638006554/{{review.image}}" width = "200px"></img></p>
+    <p> Дата публикации: {{review.pub_date}}
 
     {% if request.user.is_authenticated %}
         {% if comment_list %}

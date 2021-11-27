@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Профиль{% endblock %}
+{% block navigati %}
+    {% if request.user.is_authenticated %}
+        <div id="sidebar">
+            <img src = "https://avatarfiles.alphacoders.com/112/112888.jpg" width = "150px">
+            <p>{{ request.user.username }}</p>
+            <a href = "#">Настройки</a>
+            <br>
+            <a href = "#">Выйти</a>
+        </div>
+    {% else %}
+        <div id="sidebar">
+            <p>no</p>
+        </div>
+    {% endif %}
+    {% endblock %}
+{% block content %}
+    <table>
+        <tr>
+            <td>Ваши отзывы</td>
+        </tr>
+        <tr>
+            <td>Ваши комментарии</td>
+        </tr>
+    </table>
+{% endblock %}
