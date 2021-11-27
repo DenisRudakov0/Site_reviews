@@ -1,18 +1,37 @@
 .menu {
-    width: 100%;
-    height: 60px;
-    background-color: white;
+    position: relative;
+    margin: 10px;
+    width: 80%;
+    left: 10%;
+    background-color: rgb(218, 218, 218);
     color: rgb(0, 0, 0);
+}
+
+
+#logo, #search, #login { position: relative; display:inline-block;}
+#logo {
+    float: left;
+    width: 40%;
+}
+
+#search{
+    float: left;
+    width: 40%;
+}
+
+#login{
+    float: left;
+    width: 20%;
 }
 
 body { margin: 0; }
 #sidebar, #content { position: absolute; } 
-#sidebar, #content { overflow: auto; padding: 10px; }
+#sidebar, #content { overflow: auto;}
 #header {
+    overflow: hidden;
     position: relative;
-    width: 500px;
+    width: 100%;
     height: auto; /* Высота слоя */
-    background: white; border-bottom: 2px solid #7B5427;
 }
 #header h1 { padding: 20px; margin: 0; }
 
@@ -25,7 +44,7 @@ body { margin: 0; }
 }
 
 #sidebar { 
-    width: 25%; background: #ECF5E4; border-right: 1px solid #231F20;
+    width: 25%; background: #ECF5E4;
 }
 
 #content {
