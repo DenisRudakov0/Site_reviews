@@ -9,6 +9,9 @@ class Review(models.Model):
     author_name = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='my_review')
     readers = models.ManyToManyField(User, through='Raiting', related_name='review')
 
+    def __str__(self):
+        return f'{self.review_title} | {self.author_name}'
+
 class Comment(models.Model):
     review = models.ForeignKey(Review, on_delete = models.CASCADE)
     author_name = models.CharField('имя автора', max_length = 50)
@@ -30,3 +33,6 @@ class Raiting(models.Model):
     user_raiting = models.ForeignKey(User, on_delete=models.CASCADE)
     like = models.BooleanField(default=False)
     raite = models.PositiveSmallIntegerField(choices=RATE_CHOISES)
+
+    def __str__(self):
+        return f'raiting:{self.review_raiting}:{self.user_raiting}'
