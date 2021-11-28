@@ -6,10 +6,8 @@ class Review(models.Model):
     review_text = models.TextField('текст статьи')
     image = models.ImageField(upload_to='images/', blank=True)
     pub_date = models.DateTimeField('дата публикации')
-   
-    class Meta:
-        verbose_name = 'Отзыв'
-        verbose_name_plural = 'Отзывы'
+    author_name = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='my_review')
+    readers = models.ManyToManyField(User, through='Raiting', related_name='review')
 
 class Comment(models.Model):
     review = models.ForeignKey(Review, on_delete = models.CASCADE)
