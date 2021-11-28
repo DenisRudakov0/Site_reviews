@@ -1,0 +1,14 @@
+.like{
+    font-size:24px;
+    user-select: none;
+}
+
+.plus {
+   color:green;
+}
+.minus{
+    color:red;
+}
+.cursor{
+    cursor: pointer;
+}

@@ -10,7 +10,7 @@ class Review(models.Model):
     readers = models.ManyToManyField(User, through='Raiting', related_name='review')
 
     def __str__(self):
-        return f'{self.review_title} | {self.author_name}'
+        return f'{self.review_title} |'
 
 class Comment(models.Model):
     review = models.ForeignKey(Review, on_delete = models.CASCADE)
@@ -32,7 +32,7 @@ class Raiting(models.Model):
     review_raiting = models.ForeignKey(Review, on_delete=models.CASCADE)
     user_raiting = models.ForeignKey(User, on_delete=models.CASCADE)
     like = models.BooleanField(default=False)
-    raite = models.PositiveSmallIntegerField(choices=RATE_CHOISES)
 
     def __str__(self):
-        return f'raiting:{self.review_raiting}:{self.user_raiting}'
+        return f'{self.id}:{self.review_raiting}:{self.user_raiting}'
+

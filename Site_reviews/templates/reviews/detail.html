@@ -3,13 +3,32 @@
 {% block title %}{{review.review_title}}{% endblock %}
 {% block style %}
 <link href="{% static "reviews/CSS/css.css" %}" rel="stylesheet" type="text/css">
+<link href="{% static "reviews/CSS/like.css" %}" rel="stylesheet" type="text/css">
 {% endblock  %}
 {% block content %}
     <span><h3>{{review.review_title}}</h3></span>
     <span><i>Дата публикации: {{review.pub_date}}</i></span>
     <br>
-    <a href = "#"><img src = "https://res.cloudinary.com/djx4fzf78/image/upload/v1638103252/image/like_l1lge1.png" width="30px"></img></a>
-    <a href = "#"><img src = "https://res.cloudinary.com/djx4fzf78/image/upload/v1638103441/image/1607030843_32826_kvjey7.jpg" width="30px"></img></a>
+    
+    <script src="{% static "reviews/JS/like.js" %}" type="text/javascript"></script>
+    <div class = like>
+        <span class="plus cursor">+</span> 
+        <span class="minus cursor">-</span>  
+        <span class="counter">{{review.readers.count}}</span>
+        <a href = "#"><img src = "https://res.cloudinary.com/djx4fzf78/image/upload/v1638103252/image/like_l1lge1.png" width="30px"></img></a>
+        <a href = "#"><img src = "https://res.cloudinary.com/djx4fzf78/image/upload/v1638103441/image/1607030843_32826_kvjey7.jpg" width="30px"></img></a>
+    
+    </div>
+
+    <form action = 'http://127.0.0.1:8000/like/add/', method = "post">
+        {% csrf_token %}
+        <input type = "hidden", name = 'review_id' value = {{review.id}}>
+        <input type = "hidden", name = 'user_id' value = {% if request.user.is_authenticated %}{{request.user.id}}{% else %}None{% endif %}>
+        <button type="submit">Like</button>
+    </form>
+
+    <br> 
+    
     <p>{{review.review_text}}</p>
     
     <p><img src = "https://res.cloudinary.com/djx4fzf78/image/upload/v1638006554/{{review.image}}" width = "200px"></img></p>
