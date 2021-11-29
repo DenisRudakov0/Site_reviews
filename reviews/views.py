@@ -48,7 +48,6 @@ def like_add(request):
     
     a = Review.objects.get(id = review_id)
     like_count = a.readers.count()
-    like_count = Raiting.objects.count()
     return JsonResponse({'like_count': like_count})
 
 def reviews_add(request):

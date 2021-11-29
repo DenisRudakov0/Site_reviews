@@ -37,15 +37,16 @@ class Comment(models.Model):
 
 class Raiting(models.Model):
     RATE_CHOISES = (
-        (1, 'one'),
-        (2, 'two'),
-        (3, 'three'),
-        (4, 'four'),
-        (5, 'five'),
+        (1, 1),
+        (2, 2),
+        (3, 3),
+        (4, 4),
+        (5, 5),
     )
     review_raiting = models.ForeignKey(Review, on_delete=models.CASCADE)
     user_raiting = models.ForeignKey(User, on_delete=models.CASCADE)
     like = models.BooleanField(default=False)
+    
 
     def __str__(self):
         return f'{self.id}:{self.review_raiting}:{self.user_raiting}'
