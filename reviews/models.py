@@ -3,10 +3,14 @@ from django.contrib.auth.models import User
 from django.db.models.fields.related import ForeignKey
 from django.utils import timezone
 
+class Categoru(models.Model):
+    name_categoru = models.CharField('Имя категории', max_length = 100)
+
 class Review(models.Model):
-    review_title = models.CharField('название статьи', max_length = 200)
+    caregoru = models.ForeignKey(Categoru, on_delete=models.SET_NULL, null=True)
+    review_title = models.CharField('название отзыва', max_length = 200)
     slug = models.SlugField(blank=True)
-    review_text = models.TextField('текст статьи')
+    review_text = models.TextField('текст отзыва')
     image = models.ImageField(upload_to='images/', blank=True)
     pub_date = models.DateTimeField('дата публикации')
     author_name = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='my_review')

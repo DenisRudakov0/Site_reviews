@@ -45,6 +45,5 @@ def like_add(request):
     like_count = Raiting.objects.count()
     return JsonResponse({'like_count': like_count})
 
-@require_POST
 def reviews_add(request):
-    return HttpResponse('asd')
+    return render(request, 'reviews/new.html')
