@@ -6,6 +6,9 @@ from django.utils import timezone
 class Categoru(models.Model):
     name_categoru = models.CharField('Имя категории', max_length = 100)
 
+    def __str__(self):
+        return f'{self.name_categoru}'
+
 class Review(models.Model):
     caregoru = models.ForeignKey(Categoru, on_delete=models.SET_NULL, null=True)
     review_title = models.CharField('название отзыва', max_length = 200)

@@ -1,10 +1,22 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}Последние отзывы{% endblock %}
+{% block style %}
+   <link href="{% static "base/CSS/index.css" %}" rel="stylesheet" type="text/css">
+{% endblock  %}
 {% block content %}
    {% if reviews_list %}
       {% for elem in reviews_list %}
           <p><a href = "{{elem.id}}">{{elem.review_title}}</a></p>
+          <div class = "review">
+            <div class = "image">
+               <img src = "https://res.cloudinary.com/djx4fzf78/image/upload/v1638006554/{{elem.image}}" class = "image"></img>
+            </div>
+            </div class = "text">
+               <p>{{elem.author_name}} | {{elem.readers.count}}</p>
+               <p>{{elem.review_text}}</p>
+            </div>
+          </div>
       {% endfor %}
    {% else %}
       Статьи не найдены

@@ -43,10 +43,11 @@
     <div class = "text" width = "260px">
         {% block navigati %}
         <div id="sidebar">
-            <p>Плов по-фергански</p><p>Плов узбекский</p>
-            <p>Плов сибирский</p><p>Плов итальянский</p>
-            <p>Плов эстонский</p><p>Плов по-американски</p>
-            <p>Плов по-индейски</p>
+            {% for elem in categoru_list %}
+                <a href = "#">{{elem.name_categoru}}</a>
+                <br>
+                <p>asdasfsaf</p>
+            {% endfor %}
         </div>
         {% endblock  %}>
         
