@@ -1,8 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.fields.related import ForeignKey
+from django.utils import timezone
 
 class Review(models.Model):
     review_title = models.CharField('название статьи', max_length = 200)
+    slug = models.SlugField(blank=True)
     review_text = models.TextField('текст статьи')
     image = models.ImageField(upload_to='images/', blank=True)
     pub_date = models.DateTimeField('дата публикации')
@@ -10,7 +13,11 @@ class Review(models.Model):
     readers = models.ManyToManyField(User, through='Raiting', related_name='review')
 
     def __str__(self):
-        return f'{self.review_title} |'
+        return f'{self.review_title}'
+
+class ReviewImage(models.Model):
+    image = models.ForeignKey(Review, on_delete=models.CASCADE)
+    image_push = models.ImageField(upload_to="images/%Y/%m/%d", blank=True)
 
 class Comment(models.Model):
     review = models.ForeignKey(Review, on_delete = models.CASCADE)

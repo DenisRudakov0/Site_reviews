@@ -24,5 +24,6 @@ urlpatterns = [
     path('', include('reviews.urls')),
     path('admin/', admin.site.urls),
     path('like/', include('reviews.urls')),
+    path('reviews/', include('reviews.urls'))
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

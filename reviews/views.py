@@ -12,7 +12,6 @@ def index(request):
 def detail(request, review_id):
     try:
         a = Review.objects.get(id = review_id)
-        like = a.readers.all()
         comment_list = a.comment_set.order_by('id')[:10]
     except:
         raise Http404('Отзыв не найден')
@@ -45,3 +44,7 @@ def like_add(request):
     like_count = a.readers.count()
     like_count = Raiting.objects.count()
     return JsonResponse({'like_count': like_count})
+
+@require_POST
+def reviews_add(request):
+    return HttpResponse('asd')
