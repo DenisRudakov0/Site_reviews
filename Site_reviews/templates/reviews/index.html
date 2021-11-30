@@ -3,6 +3,7 @@
 {% block title %}Последние отзывы{% endblock %}
 {% block style %}
    <link href="{% static "base/CSS/index.css" %}" rel="stylesheet" type="text/css">
+   <link href="{% static "reviews.CSS.star.css" %}" rel="stylesheet" type="text/css">
 {% endblock  %}
 {% block content %}
    {% if reviews_list %}
@@ -20,6 +21,25 @@
                   {% else %}
                      {{ elem.like__sum }}
                   {% endif %}
+
+                  <div class = "star">
+                     <form>
+                         <div class="raiting rating_set">
+                             <div class="raiting_body">
+                                 <div class="raiting_active"></div>
+                                     <div class="raiting_items" id="test" onmouseout="start_raiting()">
+                                         <input type="radio" class="raiting_item" value="1">
+                                         <input type="radio" class="raiting_item" value="2">
+                                         <input type="radio" class="raiting_item" value="3">
+                                         <input type="radio" class="raiting_item" value="4">
+                                         <input type="radio" class="raiting_item" value="5">
+                                     </div>
+                                 <div class="raiting__value" id="rating_value">4</div>
+                             </div>
+                         </div>
+                     </form>
+                 </div>
+
                <p>{{elem.review_text}}</p>
             </div>
          </div>
@@ -28,4 +48,5 @@
    {% else %}
       Статьи не найдены
    {% endif %}
+   <script type="text/javascript" src = "{% static "reviews/JS/star.js" %}"></script>
 {% endblock %}
