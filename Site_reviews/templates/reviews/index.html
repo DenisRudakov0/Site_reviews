@@ -6,12 +6,20 @@
 {% endblock  %}
 {% block content %}
    {% if reviews_list %}
-      {% for elem in reviews_list %}
+      {% for elem in a %}
          <div class = "Post">
             <h5><a href = "{{elem.id}}">{{elem.review_title}}</a></h5>
             <div class = "review">
                <img src = "https://res.cloudinary.com/djx4fzf78/image/upload/v1638006554/{{elem.image}}" class = "image"></img>
-               <p>Автор: {{elem.author_name}} | Оценка автора: {{elem.rait}} / 10 | Кол-во лайков: {{elem.readers.count}}</p>
+               <p>
+                  Автор: {{elem.author_name}} | 
+                  Оценка автора: {{elem.rait}} / 10 | 
+                  Кол-во лайков: 
+                  {% if elem.like__sum == None %}
+                     0
+                  {% else %}
+                     {{ elem.like__sum }}
+                  {% endif %}
                <p>{{elem.review_text}}</p>
             </div>
          </div>

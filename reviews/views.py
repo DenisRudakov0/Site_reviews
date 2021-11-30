@@ -1,15 +1,33 @@
 from django.contrib.auth.models import User
+from django.db.models.aggregates import Count, Sum
 from django.shortcuts import render, redirect
 from .models import Raiting, Review, Comment, Categoru
 from django.http import Http404, HttpResponseRedirect, HttpResponse, JsonResponse
 from django.urls import reverse
 from django.views.decorators.http import require_POST
 from .forms import ReviewForm
+from django.db.models import Aggregate
 
 def index(request):
     reviews_list = Review.objects.all()
+    list_like = []
+    for elem in reviews_list:
+        a = Raiting.objects.filter(like = True, review_raiting = elem.id).aggregate(Sum('like'))
+        a['id'] = elem.id
+        a['review_title'] = elem.review_title
+        a['image'] = elem.image
+        a['author_name'] = elem.author_name
+        a['rait'] = elem.rait
+        a['review_text'] = elem.review_text
+        list_like.append(a)
+
+    a = list_like
     categoru_list = menu()
-    return render(request, 'reviews/index.html', {'reviews_list': reviews_list, 'categoru_list': categoru_list})
+    
+    return render(request, 'reviews/index.html', {'reviews_list': reviews_list, 'categoru_list': categoru_list, 'a': a})
+
+def proba(request):
+    return HttpResponse('ok')
 
 def menu():
     categoru_list = Categoru.objects.all()
@@ -51,9 +69,8 @@ def like_add(request):
         like = Raiting(review_raiting = review, user_raiting = user, like = True)
         like.save()
     
-    a = Raiting.objects.filter(review_raiting = review_id, like = True)
-    like_count = a.count()
-    return JsonResponse({'like_count': like_count})
+    a = Raiting.objects.filter(like = True, review_raiting = review_id).aggregate(Sum('likes'))
+    return JsonResponse({'like_count': a})
 
 def reviews_add(request):
     if request.method == 'POST':
