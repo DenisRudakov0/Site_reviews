@@ -1,3 +1,8 @@
 .image {
     width: 200px;
 }
+
+.post {
+    position: relative;
+    width: 70%;
+}

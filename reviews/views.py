@@ -4,6 +4,7 @@ from .models import Raiting, Review, Comment, Categoru
 from django.http import Http404, HttpResponseRedirect, HttpResponse, JsonResponse
 from django.urls import reverse
 from django.views.decorators.http import require_POST
+from .forms import ReviewForm
 
 def index(request):
     reviews_list = Review.objects.all()
@@ -41,14 +42,45 @@ def like_add(request):
     
     try:
         like = Raiting.objects.get(review_raiting = review, user_raiting = user)
-        like.delete()
+        if like.like == False:
+            like.like = True
+        else:
+            like.like = False
+        like.save()
     except Exception as e:
         like = Raiting(review_raiting = review, user_raiting = user, like = True)
         like.save()
     
-    a = Review.objects.get(id = review_id)
-    like_count = a.readers.count()
+    a = Raiting.objects.filter(review_raiting = review_id, like = True)
+    like_count = a.count()
     return JsonResponse({'like_count': like_count})
 
 def reviews_add(request):
-    return render(request, 'reviews/new.html')
+    if request.method == 'POST':
+        category = request.POST.get('categoru')
+        review_title = request.POST.get('review_title')
+        review_text = request.POST.get('review_text')
+        pub_date = request.POST.get('pub_date')
+        new_record = Review()
+        return HttpResponse('asdsa')
+        """
+        form = ReviewForm(request.POST)
+        if form.is_valid:
+            add_fields = form.save()
+            add_fields.author_name = User.objects.get(id = 1)
+            return HttpResponse('Save')
+        else:
+            error = 'Неверная форма'
+        """
+    else:
+        error = 'Неверная форма'
+    form = ReviewForm()
+    data = {
+        'form': form,
+        'error': error
+    }
+    return render(request, 'reviews/new.html', data)
+
+def test(request):
+    a = Raiting.objects.filter(review_raiting = 1, like = True)
+    return render(request, 'reviews/test.html', {'list': a})

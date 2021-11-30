@@ -3,12 +3,25 @@
 {% block title %}Последние отзывы{% endblock %}
 {% block content %}
    <form action = "#" method = "POST">
-        <p>Название</p><input type = 'text'>
-        <p>Фото на обложку</p><input type = 'file'>
-        <p>Фото</p><input type = 'file' name="photo" multiple accept="image/*,image/jpeg,image/png">
-        <p>Текст отзыва</p><input type = 'text'>
-        <p>Дата публикации</p><input type = 'date'>
-        <p>Дата публикации</p><input type = 'time'>
-        <p><input type="submit"></p>
+      {% csrf_token %}
+      {{ request.user.is_authenticated }}
+      {{ request.user.id }} 
+      {{ form.caregoru }}<br>
+      {{ form.review_title }}<br>
+      {{ form.review_text }}<br>
+      {{ form.image }}<br>
+      {{ form.pub_date }}<br>
+      {{ form.author_name }} <br>
+
+      <p>Название</p><input type = 'text'>
+      <p>Фото на обложку</p><input type = 'file'>
+      <p>Фото</p><input type = 'file' name="photo" multiple accept="image/*,image/jpeg,image/png">
+      <p>Текст отзыва</p><input type = 'text'>
+      <p>Дата публикации</p><input type = 'date'>
+      <p>Дата публикации</p><input type = 'time'>
+
+      <span>{{ error }}</span>
+
+      <p><input type="submit"></p>
    </form>
 {% endblock %}

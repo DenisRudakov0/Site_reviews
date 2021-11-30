@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Последние отзывы{% endblock %}
+{% block content %}
+   {% for i in list %}
+    <p>{{i.review_raiting}}</p>
+    <p>{{i.like}}</p>
+   {% endfor %}
+{% endblock %}

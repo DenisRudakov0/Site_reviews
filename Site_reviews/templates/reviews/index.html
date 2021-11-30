@@ -7,16 +7,16 @@
 {% block content %}
    {% if reviews_list %}
       {% for elem in reviews_list %}
-          <p><a href = "{{elem.id}}">{{elem.review_title}}</a></p>
-          <div class = "review">
-            <div class = "image">
-               <img src = "https://res.cloudinary.com/djx4fzf78/image/upload/v1638006554/{{elem.image}}" class = "image"></img>
+         <div class = "Post">
+            <p><a href = "{{elem.id}}">{{elem.review_title}}</a></p>
+            <div class = "review">
+               <div class = "image">
+                  <img src = "https://res.cloudinary.com/djx4fzf78/image/upload/v1638006554/{{elem.image}}" class = "image"></img>
+                  <p>{{elem.author_name}} | {{elem.readers.count}}</p>
+                  <p>{{elem.review_text}}</p>
+               </div>
             </div>
-            </div class = "text">
-               <p>{{elem.author_name}} | {{elem.readers.count}}</p>
-               <p>{{elem.review_text}}</p>
-            </div>
-          </div>
+         </div>
       {% endfor %}
    {% else %}
       Статьи не найдены

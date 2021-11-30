@@ -47,7 +47,6 @@ class Raiting(models.Model):
     user_raiting = models.ForeignKey(User, on_delete=models.CASCADE)
     like = models.BooleanField(default=False)
     
-
     def __str__(self):
         return f'{self.id}:{self.review_raiting}:{self.user_raiting}'
 
