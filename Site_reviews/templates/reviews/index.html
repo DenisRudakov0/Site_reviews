@@ -8,7 +8,7 @@
    {% if reviews_list %}
       {% for elem in reviews_list %}
          <div class = "Post">
-            <p><a href = "{{elem.id}}">{{elem.review_title}}</a></p>
+            <h5><a href = "{{elem.id}}">{{elem.review_title}}</a></h5>
             <div class = "review">
                <div class = "image">
                   <img src = "https://res.cloudinary.com/djx4fzf78/image/upload/v1638006554/{{elem.image}}" class = "image"></img>
@@ -17,6 +17,7 @@
                </div>
             </div>
          </div>
+         <hr>
       {% endfor %}
    {% else %}
       Статьи не найдены

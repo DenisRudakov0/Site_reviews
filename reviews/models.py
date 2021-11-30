@@ -10,10 +10,12 @@ class Categoru(models.Model):
         return f'{self.name_categoru}'
 
 class Review(models.Model):
+    RATE_AUTHOR_CHOISES = ((1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6), (7, 7), (8, 8), (9, 9), (10, 10))
     caregoru = models.ForeignKey(Categoru, on_delete=models.SET_NULL, null=True)
     review_title = models.CharField('название отзыва', max_length = 200)
     slug = models.SlugField(blank=True)
     review_text = models.TextField('текст отзыва')
+    rait = models.IntegerField(max_length = 1, choices = RATE_AUTHOR_CHOISES, default=1)
     image = models.ImageField(upload_to='images/', blank=True)
     pub_date = models.DateTimeField('дата публикации')
     author_name = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='my_review')
@@ -36,16 +38,11 @@ class Comment(models.Model):
         verbose_name_plural = 'Комментарии'
 
 class Raiting(models.Model):
-    RATE_CHOISES = (
-        (1, 1),
-        (2, 2),
-        (3, 3),
-        (4, 4),
-        (5, 5),
-    )
+    RATE_CHOISES = ((1, 1), (2, 2), (3, 3), (4, 4), (5, 5))
     review_raiting = models.ForeignKey(Review, on_delete=models.CASCADE)
     user_raiting = models.ForeignKey(User, on_delete=models.CASCADE)
-    like = models.BooleanField(default=False)
+    like = models.BooleanField(default = False)
+    star = models.IntegerField(max_length = 1, choices = RATE_CHOISES, default = 1)
     
     def __str__(self):
         return f'{self.id}:{self.review_raiting}:{self.user_raiting}'

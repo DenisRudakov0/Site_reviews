@@ -63,15 +63,6 @@ def reviews_add(request):
         pub_date = request.POST.get('pub_date')
         new_record = Review()
         return HttpResponse('asdsa')
-        """
-        form = ReviewForm(request.POST)
-        if form.is_valid:
-            add_fields = form.save()
-            add_fields.author_name = User.objects.get(id = 1)
-            return HttpResponse('Save')
-        else:
-            error = 'Неверная форма'
-        """
     else:
         error = 'Неверная форма'
     form = ReviewForm()
