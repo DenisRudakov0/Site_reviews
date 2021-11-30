@@ -15,7 +15,7 @@ class Review(models.Model):
     review_title = models.CharField('название отзыва', max_length = 200)
     slug = models.SlugField(blank=True)
     review_text = models.TextField('текст отзыва')
-    rait = models.IntegerField(max_length = 1, choices = RATE_AUTHOR_CHOISES, default=1)
+    rait = models.IntegerField(choices = RATE_AUTHOR_CHOISES, default=1)
     image = models.ImageField(upload_to='images/', blank=True)
     pub_date = models.DateTimeField('дата публикации')
     author_name = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='my_review')
@@ -42,7 +42,7 @@ class Raiting(models.Model):
     review_raiting = models.ForeignKey(Review, on_delete=models.CASCADE)
     user_raiting = models.ForeignKey(User, on_delete=models.CASCADE)
     like = models.BooleanField(default = False)
-    star = models.IntegerField(max_length = 1, choices = RATE_CHOISES, default = 1)
+    star = models.IntegerField(choices = RATE_CHOISES, default = 1)
     
     def __str__(self):
         return f'{self.id}:{self.review_raiting}:{self.user_raiting}'

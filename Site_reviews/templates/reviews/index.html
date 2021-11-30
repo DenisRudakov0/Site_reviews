@@ -10,11 +10,9 @@
          <div class = "Post">
             <h5><a href = "{{elem.id}}">{{elem.review_title}}</a></h5>
             <div class = "review">
-               <div class = "image">
-                  <img src = "https://res.cloudinary.com/djx4fzf78/image/upload/v1638006554/{{elem.image}}" class = "image"></img>
-                  <p>{{elem.author_name}} | {{elem.readers.count}}</p>
-                  <p>{{elem.review_text}}</p>
-               </div>
+               <img src = "https://res.cloudinary.com/djx4fzf78/image/upload/v1638006554/{{elem.image}}" class = "image"></img>
+               <p>Автор: {{elem.author_name}} | Оценка автора: {{elem.rait}} / 10 | Кол-во лайков: {{elem.readers.count}}</p>
+               <p>{{elem.review_text}}</p>
             </div>
          </div>
          <hr>

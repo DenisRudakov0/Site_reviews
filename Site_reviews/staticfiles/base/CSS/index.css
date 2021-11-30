@@ -1,10 +1,7 @@
 .image {
     width: 200px;
-}
-
-.post {
-    position: relative;
-    width: 70%;
+    float:left; /* Выравнивание по левому краю */
+    margin: 7px 7px 7px 0; /* Отступы вокруг картинки */
 }
 
 /* Настройки для темной темы */
