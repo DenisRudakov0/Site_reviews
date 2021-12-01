@@ -38,11 +38,11 @@ class Comment(models.Model):
         verbose_name_plural = 'Комментарии'
 
 class Raiting(models.Model):
-    RATE_CHOISES = ((1, 1), (2, 2), (3, 3), (4, 4), (5, 5))
+    RATE_CHOISES = ((0, 0), (1, 1), (2, 2), (3, 3), (4, 4), (5, 5))
     review_raiting = models.ForeignKey(Review, on_delete=models.CASCADE)
     user_raiting = models.ForeignKey(User, on_delete=models.CASCADE)
     like = models.BooleanField(default = False)
-    star = models.IntegerField(choices = RATE_CHOISES, default = 1)
+    star = models.IntegerField(choices = RATE_CHOISES, default = 0)
     
     def __str__(self):
         return f'{self.id}:{self.review_raiting}:{self.user_raiting}'

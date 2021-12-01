@@ -4,6 +4,7 @@
 {% block style %}
 <link href="{% static "reviews/CSS/css.css" %}" rel="stylesheet" type="text/css">
 <link href="{% static "reviews/CSS/star.css" %}" rel="stylesheet" type="text/css">
+
 {% endblock  %}
 {% block content %}
     
@@ -24,12 +25,12 @@
                             <input type="radio" onclick="pushRait()" onmouseover="initRatings(4)" class="raiting_item" value="4">
                             <input type="radio" onclick="pushRait()" onmouseover="initRatings(5)" class="raiting_item" value="5">
                         </div>
-                    <div class="raiting__value" id="rating_value">4</div>
+                        <div class="raiting__value" id="rating_value">4</div>
                 </div>
             </div>
         </form>
     </div>
-
+    
     <div class = like> 
         <div id="result_form">{{review.readers.count}}</div>
         <a href = "#"><img src = "https://res.cloudinary.com/djx4fzf78/image/upload/v1638103252/image/like_l1lge1.png" width="30px"></img></a>

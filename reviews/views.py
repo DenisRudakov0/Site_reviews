@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from django.db.models.aggregates import Count, Sum
+from django.db.models.aggregates import Avg, Count, Sum
 from django.shortcuts import render, redirect
 from .models import Raiting, Review, Comment, Categoru
 from django.http import Http404, HttpResponseRedirect, HttpResponse, JsonResponse
@@ -13,12 +13,20 @@ def index(request):
     list_like = []
     for elem in reviews_list:
         a = Raiting.objects.filter(like = True, review_raiting = elem.id).aggregate(Sum('like'))
+        star = Raiting.objects.filter(review_raiting = elem.id)
+        star = [i.star for i in star if i.star != 0] 
+        if len(star) >= 1:
+            star = round(sum(star) / len(star), 1)
+        else:
+            star = 0
         a['id'] = elem.id
         a['review_title'] = elem.review_title
         a['image'] = elem.image
         a['author_name'] = elem.author_name
         a['rait'] = elem.rait
         a['review_text'] = elem.review_text
+        a['star'] = star
+        a['star_len'] = str(round(star / 0.05)) + '%'
         list_like.append(a)
 
     a = list_like
