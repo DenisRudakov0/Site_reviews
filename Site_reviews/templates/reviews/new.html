@@ -1,24 +1,43 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}Последние отзывы{% endblock %}
+{% block navigati %}
+    {% if request.user.is_authenticated %}
+        <div id="sidebar">
+            <img src = "https://avatarfiles.alphacoders.com/112/112888.jpg" width = "150px">
+            <p>{{ request.user.username }}</p>
+            <a href = "#">Настройки</a>
+            <br>
+            <a href = "#">Выйти</a>
+        </div>
+    {% else %}
+        <div id="sidebar">
+            <p>no</p>
+        </div>
+    {% endif %}
+{% endblock %}
 {% block content %}
    {% if request.user.is_authenticated %}
-      <form action = "#" method = "POST">
+      <form action = "{{ request.user.id }}" method = "POST">
          {% csrf_token %}
          <p>Категория отзыва</p>
-         {{ form.caregoru }}<br>
+         {{ form.categoru }}<br>
          <p>Оценка автора</p>
          {{ form.rait }}<br>
          <p>Название</p>
          {{ form.review_title }}<br>
+         <p>Превью Текст</p>
+         {{ form.prev_text }}<br>
          <p>Текст отзыва</p>
          {{ form.review_text }}<br>
          <p>Фото на обложку</p>
          {{ form.image }}<br>
          <p>Дата публикации</p>
          {{ form.pub_date }}<br>
-         <p>Автор</p>
-         {{ form.author_name }} <br>
+         <p>Время публикации</p>
+         {{ form.pub_time }}<br>
+         
+         <p>Доп фото</p>{{ form_image.image_push }}
 
          <p><input type="submit"></p>
       </form>

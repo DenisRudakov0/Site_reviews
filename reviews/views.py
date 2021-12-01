@@ -1,11 +1,12 @@
 from django.contrib.auth.models import User
 from django.db.models.aggregates import Avg, Count, Sum
 from django.shortcuts import render, redirect
+from django.utils.formats import date_format
 from .models import Raiting, Review, Comment, Categoru
 from django.http import Http404, HttpResponseRedirect, HttpResponse, JsonResponse
 from django.urls import reverse
 from django.views.decorators.http import require_POST
-from .forms import ReviewForm
+from .forms import ReviewForm, ReviewImageForm
 from django.db.models import Aggregate
 
 def index(request):
@@ -80,19 +81,45 @@ def like_add(request):
     a = Raiting.objects.filter(like = True, review_raiting = review_id).aggregate(Sum('likes'))
     return JsonResponse({'like_count': a})
 
-def reviews_add(request):
+def reviews_add(request, review_id):
     if request.method == 'POST':
-        category = request.POST.get('categoru')
+        categoru = request.POST.get('categoru')
+        rait = request.POST.get('rait')
         review_title = request.POST.get('review_title')
+        prev_text = request.POST.get('prev_text')
         review_text = request.POST.get('review_text')
+        image = request.POST.get('image')
         pub_date = request.POST.get('pub_date')
-        new_record = Review()
-        return HttpResponse('asdsa')
+        image_push = request.POST.get('image_push')
+        
+        pub_date = pub_date[6:10] + '-' + pub_date[3:5] + '-' + pub_date[:2] + pub_date[10:]
+        categoru = Categoru.objects.get(id = categoru)
+        categoru = categoru.name_categoru
+        data = {
+            'categoru': categoru,
+            'rait': rait,
+            'id_user': review_id,
+            'review_title': review_title,
+            'prev_text': prev_text,
+            'review_text': review_text,
+            'image': image,
+            'pub_date': pub_date,
+            'image_push': image_push
+        }
+        
+        new_review = Review(categoru = Categoru.objects.get(name_categoru = data['categoru']), rait = data['rait'], review_title = data['review_title'], 
+        prev_text = data['prev_text'], review_text = data['review_text'], pub_date = data['pub_date'])
+        new_review.save()
+        return JsonResponse(data)
+        
+        
     else:
         error = 'Неверная форма'
     form = ReviewForm()
+    form_image = ReviewImageForm()
     data = {
         'form': form,
+        'form_image': form_image,
         'error': error
     }
     return render(request, 'reviews/new.html', data)

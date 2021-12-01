@@ -11,13 +11,14 @@ class Categoru(models.Model):
 
 class Review(models.Model):
     RATE_AUTHOR_CHOISES = ((1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6), (7, 7), (8, 8), (9, 9), (10, 10))
-    caregoru = models.ForeignKey(Categoru, on_delete=models.SET_NULL, null=True)
+    categoru = models.ForeignKey(Categoru, on_delete=models.SET_NULL, null=True)
     review_title = models.CharField('название отзыва', max_length = 200)
     slug = models.SlugField(blank=True)
+    prev_text = models.TextField('Превью текст', max_length = 400, default = '')
     review_text = models.TextField('текст отзыва')
     rait = models.IntegerField(choices = RATE_AUTHOR_CHOISES, default=1)
     image = models.ImageField(upload_to='images/', blank=True)
-    pub_date = models.DateTimeField('дата публикации')
+    pub_date = models.DateTimeField('Дата публикации', default = timezone.now)
     author_name = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='my_review')
     readers = models.ManyToManyField(User, through='Raiting', related_name='review')
 
