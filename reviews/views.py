@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.db.models.aggregates import Avg, Count, Sum
 from django.shortcuts import render, redirect
 from django.utils.formats import date_format
-from .models import Raiting, Review, Comment, Categoru
+from .models import Raiting, Review, Comment, Categoru, ReviewImage
 from django.http import Http404, HttpResponseRedirect, HttpResponse, JsonResponse
 from django.urls import reverse
 from django.views.decorators.http import require_POST
@@ -88,10 +88,10 @@ def reviews_add(request, review_id):
         review_title = request.POST.get('review_title')
         prev_text = request.POST.get('prev_text')
         review_text = request.POST.get('review_text')
-        image = request.POST.get('image')
+        image = request.FILES.get('image')
         pub_date = request.POST.get('pub_date')
-        image_push = request.POST.get('image_push')
-        
+        image_push = request.FILES.getlist('image_push')
+
         pub_date = pub_date[6:10] + '-' + pub_date[3:5] + '-' + pub_date[:2] + pub_date[10:]
         categoru = Categoru.objects.get(id = categoru)
         categoru = categoru.name_categoru
@@ -102,17 +102,19 @@ def reviews_add(request, review_id):
             'review_title': review_title,
             'prev_text': prev_text,
             'review_text': review_text,
-            'image': image,
             'pub_date': pub_date,
-            'image_push': image_push
         }
         
         new_review = Review(categoru = Categoru.objects.get(name_categoru = data['categoru']), rait = data['rait'], review_title = data['review_title'], 
-        prev_text = data['prev_text'], review_text = data['review_text'], pub_date = data['pub_date'])
+            prev_text = data['prev_text'], review_text = data['review_text'], pub_date = data['pub_date'], 
+            image = image, author_name = User.objects.get(id = data['id_user']))
         new_review.save()
-        return JsonResponse(data)
-        
-        
+        id = new_review.id
+        if len(image_push) > 0:
+            for elem in image_push:
+                add_image = ReviewImage(image_push = elem, image = Review.objects.get(id = id))
+                add_image.save()
+        return HttpResponse(data)        
     else:
         error = 'Неверная форма'
     form = ReviewForm()
@@ -122,7 +124,7 @@ def reviews_add(request, review_id):
         'form_image': form_image,
         'error': error
     }
-    return render(request, 'reviews/new.html', data)
+    return render(request, 'reviews/new.html', data)    
 
 def test(request):
     a = Raiting.objects.filter(review_raiting = 1, like = True)

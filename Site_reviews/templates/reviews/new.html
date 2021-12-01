@@ -18,7 +18,7 @@
 {% endblock %}
 {% block content %}
    {% if request.user.is_authenticated %}
-      <form action = "{{ request.user.id }}" method = "POST">
+      <form action = "{{ request.user.id }}" method = "POST" enctype="multipart/form-data">
          {% csrf_token %}
          <p>Категория отзыва</p>
          {{ form.categoru }}<br>
@@ -34,8 +34,6 @@
          {{ form.image }}<br>
          <p>Дата публикации</p>
          {{ form.pub_date }}<br>
-         <p>Время публикации</p>
-         {{ form.pub_time }}<br>
          
          <p>Доп фото</p>{{ form_image.image_push }}
 
