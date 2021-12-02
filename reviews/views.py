@@ -137,7 +137,3 @@ def reviews_add(request, review_id):
         'error': error
     }
     return render(request, 'reviews/new.html', data)    
-
-def test(request):
-    a = Raiting.objects.filter(review_raiting = 1, like = True)
-    return render(request, 'reviews/test.html', {'list': a})
