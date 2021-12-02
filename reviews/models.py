@@ -25,6 +25,10 @@ class Review(models.Model):
     def __str__(self):
         return f'{self.review_title}'
 
+    def get_absolute_url(self):
+        return f'/{self.id}'
+    
+
 class ReviewImage(models.Model):
     image = models.ForeignKey(Review, on_delete=models.CASCADE)
     image_push = models.ImageField(upload_to="images/%Y/%m/%d", blank=True)
