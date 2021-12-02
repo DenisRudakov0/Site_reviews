@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'social_django',
     'account.apps.AccountConfig',
     'reviews.apps.ReviewsConfig',
+    'Testin.apps.TestinConfig',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -87,6 +88,14 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+
+            'builtins': [
+                'Site_reviews.templatetags.markdown_extras', 
+                ],
+            
+            'libraries':{
+                'markdown_extras': 'Site_reviews.templatetags.markdown_extras',
+            }
         },
     },
 ]
