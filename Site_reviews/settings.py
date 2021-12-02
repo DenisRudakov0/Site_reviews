@@ -91,10 +91,12 @@ TEMPLATES = [
 
             'builtins': [
                 'Site_reviews.templatetags.markdown_extras', 
+                'Site_reviews.templatetags.review_tags',
                 ],
             
             'libraries':{
                 'markdown_extras': 'Site_reviews.templatetags.markdown_extras',
+                'review_tags': 'Site_reviews.templatetags.review_tags',
             }
         },
     },

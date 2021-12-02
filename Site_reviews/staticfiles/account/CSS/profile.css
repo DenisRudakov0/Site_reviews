@@ -1,0 +1,13 @@
+#user_sidebar, #review_option { position: absolute; top: 82px;;}
+
+#user_sidebar { 
+    width: 20%;
+    border-right: 1px solid #231F20; 
+    bottom: 0; /* Расстояние снизу  */
+   }
+
+#review_option {
+    width: 80%;
+    left: 20%; /* Расстояние от левого края */ 
+    bottom: 0; right: 0;
+}

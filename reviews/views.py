@@ -18,7 +18,7 @@ class ReviewUpdateView(UpdateView):
 
 class ReviewDeleteView(DeleteView):
     model = Review
-    success_url = "/"
+    success_url = "/accounts/profile/"
     DeleteViewate_name = "reviews/delete.html"
 
 def index(request):

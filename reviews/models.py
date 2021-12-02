@@ -26,7 +26,7 @@ class Review(models.Model):
         return f'{self.review_title}'
 
     def get_absolute_url(self):
-        return f'/{self.id}'
+        return f'/accounts/profile/'
     
 
 class ReviewImage(models.Model):

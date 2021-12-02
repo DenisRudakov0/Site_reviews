@@ -1,28 +1,43 @@
 {% extends "base.html" %}
+{% load  review_tags %}
 {% load static %}
 {% block title %}Профиль{% endblock %}
-{% block navigati %}
-    {% if request.user.is_authenticated %}
-        <div id="sidebar">
-            <img src = "https://avatarfiles.alphacoders.com/112/112888.jpg" width = "150px">
-            <p>{{ request.user.username }}</p>
-            <a href = "#">Настройки</a>
-            <br>
-            <a href = "#">Выйти</a>
-        </div>
-    {% else %}
-        <div id="sidebar">
-            <p>no</p>
-        </div>
-    {% endif %}
-    {% endblock %}
+{% block style %}
+    <link href="{% static "account/CSS/profile.css" %}" rel="stylesheet" type="text/css">
+{% endblock %}
 {% block content %}
-    <table>
-        <tr>
-            <td>Ваши отзывы</td>
-        </tr>
-        <tr>
-            <td>Ваши комментарии</td>
-        </tr>
-    </table>
+    <div class = "container">
+        <div id = "user_sidebar">
+            {% if request.user.is_authenticated %}
+                <div id="sidebar">
+                    <img src = "https://avatarfiles.alphacoders.com/112/112888.jpg" width = "150px">
+                    <p>{{ request.user.username }}</p>
+                    <a href = "#">Настройки</a>
+                    <br>
+                    <a href = "#">Выйти</a>
+                </div>
+            {% else %}
+                <div id="sidebar">
+                    <p>no</p>
+                </div>
+            {% endif %}
+        </div>
+        <div id = "review_option">
+            {% get_review user.id as review %}
+            <table class="table table-hover">
+                <tr class="table-dark">
+                    <td colspan="3">Выши отзывы</td>
+                </tr>
+                {% for elem in review %}
+                    <tr>
+                        <td><a href = "/{{elem.id}}">{{elem.review_title}}</a></td>
+                        <td><a href = "/new/{{elem.id}}/update/"><img src = "https://res.cloudinary.com/djx4fzf78/image/upload/v1638463840/image/notes_115548_bds0ec.png" width = "20px"></img></a></td>   
+                        <td><a href = "/new/{{elem.id}}/delete/"><img src ="https://res.cloudinary.com/djx4fzf78/image/upload/v1638464176/image/Adblock_stop_delete_delete_exit_7057_qgqy1g.png" width = "20px"></img></a></td>          
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    
+
 {% endblock %}
