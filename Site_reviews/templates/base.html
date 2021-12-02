@@ -18,7 +18,7 @@
     <div id="header">
         <div class = "menu">
             <div id = "logo">
-                <a href = "https://glacial-dusk-64788.herokuapp.com/">
+                <a href = "/">
                     <img src = "https://res.cloudinary.com/djx4fzf78/image/upload/v1638012297/image/Logo_cssfqj.png" width = "150px"></img>
                 </a>
             </div>
@@ -33,7 +33,7 @@
                     {{ request.user.username }}
                     <button onclick = "window.location.href = '{% url "logout" %}';" class="btn btn-outline-success" type="submit">Выход</button>
                 {% else %}
-                    <span><button onclick = "window.location.href = 'https://glacial-dusk-64788.herokuapp.com/accounts/register/';" class="btn btn-outline-success" type="submitt" id="submitt">Регистрация</button></span>
+                    <span><button onclick = "window.location.href = '/accounts/register/';" class="btn btn-outline-success" type="submitt" id="submitt">Регистрация</button></span>
                     <span><button onclick = "window.location.href = '{% url "login" %}';" class="btn btn-outline-success" type="submit">Вход</button></span>
                 {% endif %}
             </div>  

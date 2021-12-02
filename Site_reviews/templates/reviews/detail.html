@@ -36,7 +36,7 @@
         <a href = "#"><img src = "https://res.cloudinary.com/djx4fzf78/image/upload/v1638103252/image/like_l1lge1.png" width="30px"></img></a>
     </div>     
     
-    <form action = 'https://glacial-dusk-64788.herokuapp.com/like/add/', method = "post", id = "ajax_form">
+    <form action = '/like/add/', method = "post", id = "ajax_form">
         {% csrf_token %}
         <input type = "hidden", name = 'review_id' value = {{review.id}}>
         <input type = "hidden", name = 'user_id' value = {% if request.user.is_authenticated %}{{request.user.id}}{% else %}None{% endif %}>
@@ -79,14 +79,14 @@
             $( document ).ready(function() {
                 $("#btn").click(
                     function(){
-                        sendAjaxForm('result_form', 'ajax_form', 'https://glacial-dusk-64788.herokuapp.com/like/add/');
+                        sendAjaxForm('result_form', 'ajax_form', '/like/add/');
                         return false; 
                     }
                 );
             });     
             
             function createtask(review_id, user_id) {
-                const promise = axios.post('https://glacial-dusk-64788.herokuapp.com/like/add/',
+                const promise = axios.post('/like/add/',
                 {
                     review_id: review_id,
                     user_i: user_i
