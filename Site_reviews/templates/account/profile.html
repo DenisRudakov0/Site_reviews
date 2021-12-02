@@ -24,6 +24,10 @@
         </div>
         <div id = "review_option">
             {% get_review user.id as review %}
+            
+            <a href = "/new/{{user.id}}">Добавить отзыв<img src = "https://res.cloudinary.com/djx4fzf78/image/upload/v1638466912/image/document_add_256_icon-icons.com_75994_bkyfkv.png" width = "20px"></img></a>
+
+            <br>
             <table class="table table-hover">
                 <tr class="table-dark">
                     <td colspan="3">Выши отзывы</td>
