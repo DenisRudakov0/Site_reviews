@@ -1,12 +1,6 @@
-.image {
-    width: 200px;
-    float:left; /* Выравнивание по левому краю */
-    margin: 7px 7px 7px 0; /* Отступы вокруг картинки */
-}
-
-/* Настройки для темной темы */
+/* Настройки для темной темы rgb(45, 40, 48 */
 body {
-    background: rgb(45, 40, 48);
+    background: rgb(255, 255, 255);
     
 }
 
@@ -20,14 +14,14 @@ a:hover {
 }
 
 p {
-    color: rgb(218, 218, 218);
+    color: rgb(36, 36, 36);
 }
 
 hr {
-    color: aliceblue;
+    color: rgb(36, 36, 36);
 }
 
-
+/* Звезды */
 .raiting {
     display: flex;
     align-items: flex-end;
@@ -84,4 +78,20 @@ hr {
     line-height: 1;
     padding: 15px 0px 0px 10px;
     color: rgb(218, 218, 218);
+}
+
+/* Настройка карточек */
+.card {
+    position: relative;
+    float: left;
+    width: 40%;
+    margin: 30px;
+    display: inline-block;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
 }

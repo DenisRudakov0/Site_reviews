@@ -24,35 +24,16 @@
 }
 
 body { margin: 0; }
-#sidebar, #content { position: absolute; } 
-#sidebar, #content { overflow: auto;}
-#header {
-    overflow: hidden;
-    position: relative;
-    width: 100%;
-    height: auto; /* Высота слоя */
-}
-#header h1 { padding: 20px; margin: 0; }
-
-.text {
-    position: absolute;
-    width: 80%;
-    left: 10%;
-    height: auto;
-    border: 1px solid #231F20;
-}
-
-#sidebar { 
-    width: 25%; background:#fff;
-}
 
 #content {
-    width: 75%;
-    left: 25%; /* Расстояние от левого края */ 
+    position: absolute;
+    top: 50px;
+    width: 80%;
+    left: 10%; /* Расстояние от левого края */ 
     background: #fff;
 }
 
 .container-fluid {
     position: relative;
-    left: 25%;
+    left: 10%;
 }

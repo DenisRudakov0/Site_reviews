@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load markdown_extras %}
 {% load static %}
 {% block title %}Последние отзывы{% endblock %}
 {% block style %}
@@ -7,47 +8,63 @@
 {% endblock  %}
 {% block content %}
    {% if reviews_list %}
+   <div class="">
       {% for elem in a %}
-         <div class = "Post">
-            <h5><a href = "{{elem.id}}">{{elem.review_title}}</a></h5>
-            <div class = "review">
-               <img src = "https://res.cloudinary.com/djx4fzf78/image/upload/v1638006554/{{elem.image}}" class = "image"></img>
-               <p>
-                  Автор: {{elem.author_name}} | 
-                  Оценка автора: {{elem.rait}} / 10 | 
-                  Кол-во лайков: 
-                  {% if elem.like__sum == None %}
-                     0
-                  {% else %}
-                     {{ elem.like__sum }}
-                  {% endif %}
-               </p>
+            
+            <div class="col">
+               <div class="card">
+                 <img src="https://res.cloudinary.com/djx4fzf78/image/upload/v1638006554/{{elem.image}}" class="card-img-top">
+                 <div class="card-body">
+                   <h5 class="card-title"><a href = "{{elem.id}}">{{elem.review_title}}</a></h5>
 
-               <div class = "star">
-                  <form>
-                     <div class = "raiting rating_set">
-                        <div class = "raiting_body">
-                           <div class = "raiting_active" style = "width:{{elem.star_len}}"></div>
-                           <div class = "raiting_items" id = "test">
-                              <input type = "radio" class = "raiting_item" value = "1">
-                              <input type = "radio" class = "raiting_item" value = "1">
-                              <input type = "radio" class = "raiting_item" value = "1">
-                              <input type = "radio" class = "raiting_item" value = "1">
-                              <input type = "radio" class = "raiting_item" value = "1">
-                              
-                              <div class = "raiting__value" id = "rating_value">{{elem.star}}</div>
+                           <p>
+                              Автор: {{elem.author_name}} | 
+                              Оценка автора: {{elem.rait}} / 10 | 
+                              Кол-во лайков: 
+                              {% if elem.like__sum == None %}
+                                 0
+                              {% else %}
+                                 {{ elem.like__sum }}
+                              {% endif %}
+                           </p>
+                     
+                           <div class = "star">
+                              <form>
+                                 <div class = "raiting rating_set">
+                                    <div class = "raiting_body">
+                                       <div class = "raiting_active" style = "width:{{elem.star_len}}"></div>
+                                       <div class = "raiting_items" id = "test">
+                                          <input type = "radio" class = "raiting_item" value = "1">
+                                          <input type = "radio" class = "raiting_item" value = "1">
+                                          <input type = "radio" class = "raiting_item" value = "1">
+                                          <input type = "radio" class = "raiting_item" value = "1">
+                                          <input type = "radio" class = "raiting_item" value = "1">
+                                          
+                                          <div class = "raiting__value" id = "rating_value">{{elem.star}}</div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </form>
                            </div>
-                        </div>
-                     </div>
-                  </form>
+                           <p>{{elem.review_text | markdown | safe}}</p>
+                 </div>
                </div>
-               <hr>
-               <p>{{elem.review_text}}</p>
-            </div>
-         </div>
-         <hr>
+             </div>
+
       {% endfor %}
+   </div>
    {% else %}
       Статьи не найдены
    {% endif %}
 {% endblock %}
+
+</div>
+<div class = "Post">
+   <h5><a href = "{{elem.id}}">{{elem.review_title}}</a></h5>
+   <div class = "review">
+      <img src = "https://res.cloudinary.com/djx4fzf78/image/upload/v1638006554/{{elem.image}}" class = "image"></img>
+      
+      <hr>
+      
+   </div>
+</div>
