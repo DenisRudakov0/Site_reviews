@@ -9,12 +9,17 @@ from django.views.decorators.http import require_POST
 from .forms import ReviewForm, ReviewImageForm
 from django.db.models import Aggregate
 
-from django.views.generic import DetailView, UpdateView
+from django.views.generic import DetailView, UpdateView, DeleteView
 
 class ReviewUpdateView(UpdateView):
     model = Review
     template_name = "reviews/update.html"
     form_class = ReviewForm
+
+class ReviewDeleteView(DeleteView):
+    model = Review
+    success_url = "/"
+    DeleteViewate_name = "reviews/delete.html"
 
 def index(request):
     reviews_list = Review.objects.all()
