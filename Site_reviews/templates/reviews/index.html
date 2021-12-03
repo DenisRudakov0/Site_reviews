@@ -32,7 +32,7 @@
                               <form>
                                  <div class = "raiting rating_set">
                                     <div class = "raiting_body">
-                                       <div class = "raiting_active" style = "width:{{elem.star_len}}"></div>
+                                       <div class = "raiting_active" style = "width:50%"></div>
                                        <div class = "raiting_items" id = "test">
                                           <input type = "radio" class = "raiting_item" value = "1">
                                           <input type = "radio" class = "raiting_item" value = "1">
@@ -53,18 +53,8 @@
 
       {% endfor %}
    </div>
+   <script type="text/javascript" src = "{% static "reviews/JS/star.js" %}"></script>
    {% else %}
       Статьи не найдены
    {% endif %}
 {% endblock %}
-
-</div>
-<div class = "Post">
-   <h5><a href = "{{elem.id}}">{{elem.review_title}}</a></h5>
-   <div class = "review">
-      <img src = "https://res.cloudinary.com/djx4fzf78/image/upload/v1638006554/{{elem.image}}" class = "image"></img>
-      
-      <hr>
-      
-   </div>
-</div>

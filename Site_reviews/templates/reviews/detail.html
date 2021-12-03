@@ -24,13 +24,11 @@
                             <input type="radio" onclick="PushRait(4)" onmouseover="initRatings(4)" class="raiting_item" value="4">
                             <input type="radio" onclick='PushRait(5)' onmouseover="initRatings(5)" class="raiting_item" value="5">
                         </div>
-                        <div class="raiting__value" id="rating_value">4</div>
+                        <div class="raiting__value" id="rating_value">3.5</div>
                 </div>
             </div>
         </form>
     </div>
-
-    <p id = 'select'>d</p>
     
     <div class = like> 
         <div id="result_form">{{review.readers.count}}</div>
@@ -39,8 +37,8 @@
     
     <form action = '/like/add/', method = "post", id = "ajax_form">
         {% csrf_token %}
-        <input type = "hidden", name = 'review_id' value = {{review.id}} id = "id_user">
-        <input type = "hidden", id = "id_review" name = 'user_id' value = {% if request.user.is_authenticated %}{{request.user.id}}{% else %}None{% endif %}>
+        <input type = "hidden", name = 'review_id' value = {{review.id}}>
+        <input type = "hidden", name = 'user_id' value = {% if request.user.is_authenticated %}{{request.user.id}}{% else %}None{% endif %}>
         <button type="submit" id = "btn" class = "block"></button>
     </form>
      
@@ -48,11 +46,6 @@
     <p>{{review.review_text}}</p>
         
     <p><img src = "https://res.cloudinary.com/djx4fzf78/image/upload/v1638006554/{{review.image}}" width = "200px"></img></p>
-    
-    <p>{{request.user.is_authenticated}}</p>
-    <p>{{request.user.id}}</p>
-
-    <button type="submit" onclick = "createtask({{review.id}}, {{request.user.id}})">send</button>
 
     {% if request.user.is_authenticated %}
         {% if comment_list %}
@@ -76,68 +69,8 @@
     
         </form>
     
-        <script>
-            
-            function sendAjaxForm(result_form, ajax_form, url) {
-            $.ajax({
-                url:     url, //url страницы (action_ajax_form.php)
-                type:     "GET", //метод отправки
-                dataType: "json", //формат данных
-                data: $("#"+ajax_form).serialize(),  // Сеарилизуем объект
-                success: function(response) { //Данные отправлены успешно
-                    result = $.parseJSON(response);
-                    $('#result_form').html(result.like_count);
-                },
-                error: function(response) { // Данные не отправлены
-                    $('#result_form').html('Ошибка. Данные не отправлены.');
-                }
-            });
-            }
-
-            function PushRait(value) {
-                id_user = document.querySelector("input[name = 'user_id']").value
-                id_review = document.querySelector("input[name = 'review_id']").value
-                alert(id_user)
-                alert(id_review)
-                let data = {'id_user': id_user, 'id_review': id_review}
-                sendAjax(id_user, id_review)
-            }
-
-            function SendServer(data) {
-                alert(data)
-                var xhr = new XMLHttpRequest();
-
-                xhr.open('POST', "http://127.0.0.1:8000/reviews/like/")
-                xhr.setRequestHeader('Content-Type',
-                'application/x-www-form-urlencoded');
-
-                xhr.send('data' + data);
-            }
-            
-
-
-            function sendAjax(id_user, id_review) {
-                $.ajax({
-                    url:    "http://127.0.0.1:8000/reviews/like/" + id_user + ':' + id_review, //url страницы (action_ajax_form.php)
-                    type:    "GET", //метод отправки
-                    dataType: "html", //формат данных
-            
-                    success: function(response) { //Данные отправлены успешно
-                        result = $.parseJSON(response);
-                        $('#result_form').html(result);
-                    },
-                    error: function(response) { // Данные не отправлены
-                        $('#result_form').html('Ошибка. Данные не отправлены.');
-                    }
-                });
-                }
-
-        </script>
-    
     {% else %}
         Чтобы читать и оставлять комментарии необходимо войти в аккаунт
-        paragraph = document.querySelector("#replace-me");
-        paragraph.innerText = "Your HTML Code";
     {% endif %}
 
     <script src="{% static "reviews/JS/like.js" %}" type="text/javascript"></script>

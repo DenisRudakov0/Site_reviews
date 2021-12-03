@@ -8,6 +8,7 @@ from django.urls import reverse
 from django.views.decorators.http import require_POST
 from .forms import ReviewForm, ReviewImageForm
 from django.db.models import Aggregate
+from django.core.exceptions import ObjectDoesNotExist
 
 from django.views.generic import DetailView, UpdateView, DeleteView
 
@@ -67,12 +68,26 @@ def leave_comment(request, review_id):
     try:
         a = Review.objects.get(id = review_id)
     except:
-        raise Http404('Отзыв не найден')
+        raise Http404('Отзыв не найден11')
     a.comment_set.create(author_name = request.POST['name'], comment_text = request.POST['text'])
     return HttpResponseRedirect(reverse('reviews:detail', args = (a.id,)))
 
-def like_add(request, data):
-    return HttpResponse(8)
+def star_add(request, data):
+    data = [int(i) for i in data.split(':')]
+    if Raiting.objects.filter(review_raiting = data[1], user_raiting = data[0]).exists() == False:
+        rait = Raiting(review_raiting = Review.objects.get(id = data[1]), user_raiting = User.objects.get(id = data[0]), star = data[2], like = False)
+        rait.save()  
+    else: 
+        rait = Raiting.objects.get(review_raiting = data[1], user_raiting = data[0])
+        rait.star = data[2]
+        rait.save()
+    return HttpResponse( star_rait(data[1]) )
+
+def star_rait(id):
+    star = Raiting.objects.filter(review_raiting = id)
+    star = [i.star for i in star if i.star != 0]
+    data = sum(star) / len(star)
+    return data
 
 def reviews_add(request, review_id):
     if request.method == 'POST':
