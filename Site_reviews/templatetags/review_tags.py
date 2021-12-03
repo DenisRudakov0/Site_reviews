@@ -16,3 +16,12 @@ def star(id):
     else:
         data = 0
     return data
+
+@register.simple_tag()
+def like(id):
+    like = Raiting.objects.filter(review_raiting = id, like = True)
+    if like.count() > 0:
+        data = sum([i.like for i in like if i.like])
+    else:
+        data = 0
+    return data

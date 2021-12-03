@@ -81,12 +81,37 @@ def star_add(request, data):
         rait = Raiting.objects.get(review_raiting = data[1], user_raiting = data[0])
         rait.star = data[2]
         rait.save()
-    return HttpResponse( star_rait(data[1]) )
+    return HttpResponse( star_rait_Avg(data[1]) )
 
-def star_rait(id):
+def like_add(request, data):
+    data = [int(i) for i in data.split(':')]
+    if Raiting.objects.filter(review_raiting = data[1], user_raiting = data[0]).exists() == False:
+        rait = Raiting(review_raiting = Review.objects.get(id = data[1]), user_raiting = User.objects.get(id = data[0]), like = True)
+        rait.save()  
+    else: 
+        rait = Raiting.objects.get(review_raiting = data[1], user_raiting = data[0])
+        if rait.like == False:
+            rait.like = True
+        else:
+            rait.like = False
+        rait.save()
+    return HttpResponse(like_count(data[1]))
+
+def star_rait_Avg(id):
     star = Raiting.objects.filter(review_raiting = id)
-    star = [i.star for i in star if i.star != 0]
-    data = round(sum(star) / len(star), 1)
+    if star.count() > 0:
+        star = [i.star for i in star if i.star != 0]
+        data = round(sum(star) / len(star), 1)
+    else:
+        data = 0
+    return data
+
+def like_count(id):
+    like = Raiting.objects.filter(review_raiting = id, like = True)
+    if like.count() > 0:
+        data = sum([i.like for i in like if i.like])
+    else:
+        data = 0
     return data
 
 def reviews_add(request, review_id):

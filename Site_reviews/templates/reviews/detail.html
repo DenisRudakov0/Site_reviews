@@ -5,6 +5,7 @@
 {% block style %}
 <link href="{% static "reviews/CSS/css.css" %}" rel="stylesheet" type="text/css">
 <link href="{% static "reviews/CSS/star.css" %}" rel="stylesheet" type="text/css">
+<link href="{% static "reviews/CSS/like.css" %}" rel="stylesheet" type="text/css">
 
 {% endblock  %}
 {% block content %}
@@ -30,11 +31,20 @@
             </div>
         </form>
     </div>
-    
-    <div class = like> 
-        <div id="result_form">{{review.readers.count}}</div>
-        <a href = "#"><img src = "https://res.cloudinary.com/djx4fzf78/image/upload/v1638103252/image/like_l1lge1.png" width="30px"></img></a>
-    </div>     
+
+    <div class = "like">
+        <form>
+            <div class="raiting rating_set">
+                <div class="like_body">
+                    <div class="like_active"></div>
+                        <div class="like_items" id="test" onmouseout="start_raiting()">
+                            <input type="radio" onclick='PushLike()' value = '0' class = 'like_item' id = "likes_val">
+                        </div>
+                        <div class="like__value" id="like_value">{% like review.id %}</div>
+                </div>
+            </div>
+        </form>
+    </div>  
     
     <form action = '/like/add/', method = "post", id = "ajax_form">
         {% csrf_token %}
