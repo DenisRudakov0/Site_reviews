@@ -86,7 +86,7 @@ def star_add(request, data):
 def star_rait(id):
     star = Raiting.objects.filter(review_raiting = id)
     star = [i.star for i in star if i.star != 0]
-    data = sum(star) / len(star)
+    data = round(sum(star) / len(star), 1)
     return data
 
 def reviews_add(request, review_id):

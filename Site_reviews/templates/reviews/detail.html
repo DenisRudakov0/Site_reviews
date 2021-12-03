@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load  review_tags %}
 {% load static %}
 {% block title %}{{review.review_title}}{% endblock %}
 {% block style %}
@@ -24,7 +25,7 @@
                             <input type="radio" onclick="PushRait(4)" onmouseover="initRatings(4)" class="raiting_item" value="4">
                             <input type="radio" onclick='PushRait(5)' onmouseover="initRatings(5)" class="raiting_item" value="5">
                         </div>
-                        <div class="raiting__value" id="rating_value">3.5</div>
+                        <div class="raiting__value" id="rating_value">{% star review.id %}</div>
                 </div>
             </div>
         </form>
