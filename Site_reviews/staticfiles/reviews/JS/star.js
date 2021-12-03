@@ -1,3 +1,4 @@
+
 start_raiting();
 
 function start_raiting() {
@@ -7,4 +8,8 @@ function start_raiting() {
 
 function initRatings(rating) {
     document.getElementsByClassName('raiting_active')[0].style.width = rating / 0.05 + '%';
+}
+
+function PushRait(value) {
+    alert(value)
 }

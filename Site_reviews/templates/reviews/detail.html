@@ -12,24 +12,25 @@
     <span><i>Дата публикации: {{review.pub_date}}</i></span>
     <br>
     
-    
     <div class = "star">
         <form>
             <div class="raiting rating_set">
                 <div class="raiting_body">
                     <div class="raiting_active"></div>
                         <div class="raiting_items" id="test" onmouseout="start_raiting()">
-                            <input type="radio" onclick="pushRait()" onmouseover="initRatings(1)" class="raiting_item" value="1">
-                            <input type="radio" onclick="pushRait()" onmouseover="initRatings(2)" class="raiting_item" value="2">
-                            <input type="radio" onclick="pushRait()" onmouseover="initRatings(3)" class="raiting_item" value="3">
-                            <input type="radio" onclick="pushRait()" onmouseover="initRatings(4)" class="raiting_item" value="4">
-                            <input type="radio" onclick="pushRait()" onmouseover="initRatings(5)" class="raiting_item" value="5">
+                            <input type="radio" onclick="PushRait(1)" onmouseover="initRatings(1)" class="raiting_item" value="1">
+                            <input type="radio" onclick="PushRait(2)" onmouseover="initRatings(2)" class="raiting_item" value="2">
+                            <input type="radio" onclick="PushRait(3)" onmouseover="initRatings(3)" class="raiting_item" value="3">
+                            <input type="radio" onclick="PushRait(4)" onmouseover="initRatings(4)" class="raiting_item" value="4">
+                            <input type="radio" onclick='PushRait(5)' onmouseover="initRatings(5)" class="raiting_item" value="5">
                         </div>
                         <div class="raiting__value" id="rating_value">4</div>
                 </div>
             </div>
         </form>
     </div>
+
+    <p id = 'select'>d</p>
     
     <div class = like> 
         <div id="result_form">{{review.readers.count}}</div>
@@ -38,8 +39,8 @@
     
     <form action = '/like/add/', method = "post", id = "ajax_form">
         {% csrf_token %}
-        <input type = "hidden", name = 'review_id' value = {{review.id}}>
-        <input type = "hidden", name = 'user_id' value = {% if request.user.is_authenticated %}{{request.user.id}}{% else %}None{% endif %}>
+        <input type = "hidden", name = 'review_id' value = {{review.id}} id = "id_user">
+        <input type = "hidden", id = "id_review" name = 'user_id' value = {% if request.user.is_authenticated %}{{request.user.id}}{% else %}None{% endif %}>
         <button type="submit" id = "btn" class = "block"></button>
     </form>
      
@@ -76,28 +77,12 @@
         </form>
     
         <script>
-            $( document ).ready(function() {
-                $("#btn").click(
-                    function(){
-                        sendAjaxForm('result_form', 'ajax_form', '/like/add/');
-                        return false; 
-                    }
-                );
-            });     
             
-            function createtask(review_id, user_id) {
-                const promise = axios.post('/like/add/',
-                {
-                    review_id: review_id,
-                    user_i: user_i
-                })
-            }
-
             function sendAjaxForm(result_form, ajax_form, url) {
             $.ajax({
                 url:     url, //url страницы (action_ajax_form.php)
-                type:     "POST", //метод отправки
-                dataType: "html", //формат данных
+                type:     "GET", //метод отправки
+                dataType: "json", //формат данных
                 data: $("#"+ajax_form).serialize(),  // Сеарилизуем объект
                 success: function(response) { //Данные отправлены успешно
                     result = $.parseJSON(response);
@@ -108,10 +93,51 @@
                 }
             });
             }
+
+            function PushRait(value) {
+                id_user = document.querySelector("input[name = 'user_id']").value
+                id_review = document.querySelector("input[name = 'review_id']").value
+                alert(id_user)
+                alert(id_review)
+                let data = {'id_user': id_user, 'id_review': id_review}
+                sendAjax(id_user, id_review)
+            }
+
+            function SendServer(data) {
+                alert(data)
+                var xhr = new XMLHttpRequest();
+
+                xhr.open('POST', "http://127.0.0.1:8000/reviews/like/")
+                xhr.setRequestHeader('Content-Type',
+                'application/x-www-form-urlencoded');
+
+                xhr.send('data' + data);
+            }
+            
+
+
+            function sendAjax(id_user, id_review) {
+                $.ajax({
+                    url:    "http://127.0.0.1:8000/reviews/like/" + id_user + ':' + id_review, //url страницы (action_ajax_form.php)
+                    type:    "GET", //метод отправки
+                    dataType: "html", //формат данных
+            
+                    success: function(response) { //Данные отправлены успешно
+                        result = $.parseJSON(response);
+                        $('#result_form').html(result);
+                    },
+                    error: function(response) { // Данные не отправлены
+                        $('#result_form').html('Ошибка. Данные не отправлены.');
+                    }
+                });
+                }
+
         </script>
     
     {% else %}
         Чтобы читать и оставлять комментарии необходимо войти в аккаунт
+        paragraph = document.querySelector("#replace-me");
+        paragraph.innerText = "Your HTML Code";
     {% endif %}
 
     <script src="{% static "reviews/JS/like.js" %}" type="text/javascript"></script>

@@ -71,27 +71,8 @@ def leave_comment(request, review_id):
     a.comment_set.create(author_name = request.POST['name'], comment_text = request.POST['text'])
     return HttpResponseRedirect(reverse('reviews:detail', args = (a.id,)))
 
-@require_POST
-def like_add(request):
-    review_id = int(request.POST.get('review_id'))
-    user_id = int(request.POST.get('user_id'))
-
-    user = User.objects.get(id = review_id)
-    review = Review.objects.get(id = user_id)
-    
-    try:
-        like = Raiting.objects.get(review_raiting = review, user_raiting = user)
-        if like.like == False:
-            like.like = True
-        else:
-            like.like = False
-        like.save()
-    except Exception as e:
-        like = Raiting(review_raiting = review, user_raiting = user, like = True)
-        like.save()
-    
-    a = Raiting.objects.filter(like = True, review_raiting = review_id).aggregate(Sum('likes'))
-    return JsonResponse({'like_count': a})
+def like_add(request, data):
+    return HttpResponse(8)
 
 def reviews_add(request, review_id):
     if request.method == 'POST':
