@@ -7,10 +7,11 @@ from django.http import Http404, HttpResponseRedirect, HttpResponse, JsonRespons
 from django.urls import reverse
 from django.views.decorators.http import require_POST
 from .forms import ReviewForm, ReviewImageForm
-from django.db.models import Aggregate
+from django.db.models import Q
 from django.core.exceptions import ObjectDoesNotExist
 
 from django.views.generic import DetailView, UpdateView, DeleteView
+
 
 class ReviewUpdateView(UpdateView):
     model = Review
@@ -24,6 +25,14 @@ class ReviewDeleteView(DeleteView):
 
 def index(request):
     reviews_list = Review.objects.all()
+    return render(request, 'reviews/index.html', {'reviews_list': reviews_list})
+
+def search(request):
+    searc_query = request.GET.get('search', '')
+    if searc_query:
+        reviews_list = Review.objects.filter(Q(review_title__icontains = searc_query) | Q(review_text__icontains = searc_query) | Q(prev_text__icontains = searc_query))
+    else:
+        HttpResponse('Данных статей не найдено')
     return render(request, 'reviews/index.html', {'reviews_list': reviews_list})
 
 def proba(request):
