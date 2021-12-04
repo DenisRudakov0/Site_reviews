@@ -2,6 +2,8 @@ from django.contrib.auth.models import User
 from django.db.models.aggregates import Avg, Count, Sum
 from django.shortcuts import render, redirect
 from django.utils.formats import date_format
+
+from Site_reviews.templatetags.review_tags import latest_posts
 from .models import Raiting, Review, Comment, Categoru, ReviewImage
 from django.http import Http404, HttpResponseRedirect, HttpResponse, JsonResponse
 from django.urls import reverse
@@ -24,8 +26,9 @@ class ReviewDeleteView(DeleteView):
     DeleteViewate_name = "reviews/delete.html"
 
 def index(request):
-    reviews_list = Review.objects.all()
-    return render(request, 'reviews/index.html', {'reviews_list': reviews_list})
+    reviews_list = Review.objects.order_by('-pub_date')
+    latest_post = Review.objects.order_by('-pub_date')[:5]
+    return render(request, 'reviews/index.html', {'reviews_list': reviews_list, 'latest_post': latest_post})
 
 def search(request):
     searc_query = request.GET.get('search', '')

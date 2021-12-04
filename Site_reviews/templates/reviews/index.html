@@ -20,6 +20,25 @@
          
          {% endfor %}
       </div>
+      <h2>Последние добавленные отзывы:</h3>
+      {% for elem in latest_post %}
+         {% like elem.id as like %}
+         {% star elem.id as star %}
+         <div class = "post_data">
+            <div class = "d-block d-sm-block d-md-none">
+               <img src="https://res.cloudinary.com/djx4fzf78/image/upload/v1638006554/{{elem.image}}" class="card-img-top">
+            </div>
+            <a href = "/{{elem.id}}"><h3>{{elem.review_title}}</h3></a>
+            <p><i>Дата публикации: {{elem.pub_date}} </i></p>
+            <div class = "param"><p>Автор: {{elem.author_name}} |</p></div>
+            <div class = "param"><p>Оценка автора: {{elem.rait}} / 10 |</p></div>
+            <div class = "param"><p>Кол-во лайков: {% if like == None %}0{% else %}{{like}}{% endif %} |</p></div>
+            <br>             
+            <p>{{elem.prev_text}}</p>
+
+         </div>
+
+      {% endfor %}
       {% for elem in reviews_list %}
             {% like elem.id as like %}
             {% star elem.id as star %}

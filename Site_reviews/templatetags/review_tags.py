@@ -30,3 +30,8 @@ def like(id):
 def menu_categoru():
     menu = Categoru.objects.all()
     return menu
+
+@register.filter()
+def latest_posts():
+    posts = Review.objects.order_by('-pub_date')[:5]
+    return posts

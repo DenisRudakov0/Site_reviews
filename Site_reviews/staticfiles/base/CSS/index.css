@@ -35,7 +35,34 @@ hr {
     display:inline-block;
 }
 
+.param {
+    display: inline-block;
+}
+
 /* Настройка карточек */
+.title {
+    left: 50px;
+}
+
+.post_data {
+    position: relative;
+    width: 90%;
+    height: auto;
+    clear: both;
+    left: 5%;
+    top: 20px;
+    padding: 10px 10px 10px 10px;
+    margin-bottom: 20px;
+    background: #f7f1f7;
+}
+
+.image_post {
+    width: 300px;
+    height: auto;
+    float: left;
+    margin-bottom: 20px;
+}
+
 .card {
     position: relative;
     float: left;
@@ -49,4 +76,12 @@ hr {
     background-clip: border-box;
     border: 1px solid rgba(0,0,0,.125);
     border-radius: .25rem;
+}
+
+@media (max-width: 767px) {
+    
+}
+
+@media (max-height: 500px) {
+
 }
