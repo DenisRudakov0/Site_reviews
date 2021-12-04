@@ -28,12 +28,19 @@ hr {
     float: left;
 }
 
+.categoru {
+    text-align: center;
+    top: 50%;
+    width: 19%;
+    display:inline-block;
+}
+
 /* Настройка карточек */
 .card {
     position: relative;
     float: left;
-    width: 40%;
-    margin: 30px;
+    width: 29%;
+    margin: 1%;
     display: inline-block;
     flex-direction: column;
     min-width: 0;
