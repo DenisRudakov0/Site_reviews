@@ -27,7 +27,7 @@ body { margin: 0; }
 
 #content {
     position: absolute;
-    top: 100px;
+    top: auto;
     width: 80%;
     left: 10%; /* Расстояние от левого края */ 
     background: #fff;
@@ -36,4 +36,12 @@ body { margin: 0; }
 .container-fluid {
     position: relative;
     left: 10%;
+}
+
+/* Меню */
+
+.navbar {
+    position: absolute;
+    width: 100%;
+    color: #000;
 }

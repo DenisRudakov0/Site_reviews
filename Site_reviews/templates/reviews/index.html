@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load markdown_extras %}
+{% load review_tags %}
 {% load static %}
 {% block title %}Последние отзывы{% endblock %}
 {% block style %}
@@ -9,6 +10,16 @@
 {% block content %}
    {% if reviews_list %}
    <div class="">
+      {% menu_categoru as menu %}
+      <div class = "navigtion">
+         {% for elem in menu %}
+
+            <div style = "width: 19%; flex: left; display: inline-block;">
+               <a href = "/categoru/{{elem}}">{{elem}}</a>
+            </div>
+         
+         {% endfor %}
+      </div>
       {% for elem in a %}
             
             <div class="col">
@@ -58,3 +69,5 @@
       Статьи не найдены
    {% endif %}
 {% endblock %}
+
+

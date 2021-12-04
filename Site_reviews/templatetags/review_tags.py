@@ -25,3 +25,8 @@ def like(id):
     else:
         data = 0
     return data
+
+@register.simple_tag()
+def menu_categoru():
+    menu = Categoru.objects.all()
+    return menu
