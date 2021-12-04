@@ -95,3 +95,9 @@ hr {
     border: 1px solid rgba(0,0,0,.125);
     border-radius: .25rem;
 }
+
+.categoru {
+    width: 19%; 
+    flex: left; 
+    display: inline-block;
+}

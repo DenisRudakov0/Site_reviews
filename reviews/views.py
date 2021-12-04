@@ -158,3 +158,8 @@ def reviews_add(request, review_id):
         'error': error
     }
     return render(request, 'reviews/new.html', data)    
+
+def filter_categoru(request, categ):
+    categ = Categoru.objects.get(name_categoru = categ)
+    list_categoru = Review.objects.filter(categoru = categ)
+    return render(request, 'reviews/filter.html', {'list_categoru': list_categoru}) 

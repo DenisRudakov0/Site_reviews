@@ -8,7 +8,7 @@
 <link href="{% static "base/CSS/index.css" %}" rel="stylesheet" type="text/css">   
 {% endblock  %}
 {% block content %}
-   {% if reviews_list %}
+   {% if list_categoru %}
    <div class="">
       {% menu_categoru as menu %}
       <div class = "navigtion">
@@ -19,8 +19,14 @@
             </div>
          
          {% endfor %}
+
+        {% for elem in list_categoru %}
+            {{elem}}
+            <br>
+        {% endfor %}
+
       </div>
-      {% for elem in a %}
+      {% for elem in list_categoru %}
             
             <div class="col">
                <div class="card">
@@ -69,5 +75,3 @@
       Статьи не найдены
    {% endif %}
 {% endblock %}
-
-

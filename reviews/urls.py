@@ -7,6 +7,7 @@ app_name = 'reviews'
 urlpatterns = [
     path('', views.index, name = 'index'),
     path('<int:review_id>/', views.detail, name = 'detail'),
+    path('categoru/<categ>', views.filter_categoru, name = 'filter_categoru'),
     path('star/<data>', views.star_add, name = 'star_add'),
     path('like/<data>', views.like_add, name = 'like_add'),
     path('new/<int:review_id>', views.reviews_add, name = 'review_add'),
