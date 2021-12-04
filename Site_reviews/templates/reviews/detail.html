@@ -51,7 +51,6 @@
         {% csrf_token %}
         <input type = "hidden", name = 'review_id' value = {{review.id}}>
         <input type = "hidden", name = 'user_id' value = {% if request.user.is_authenticated %}{{request.user.id}}{% else %}None{% endif %}>
-        <button type="submit" id = "btn" class = "block"></button>
     </form>
      
     <br> 
@@ -75,7 +74,7 @@
         {% csrf_token %}
 
         <input type="hidden" required placeholder = "Ваше имя" name="name" value = {{ request.user.username }}><br>
-        <textarea name="text" required="" placeholder="Текст комментария" cols="30" rows="10"></textarea><br>
+        <textarea name="text" required="" placeholder="Текст комментария" cols="30" rows="10" class = "form-control"></textarea><br>
         
         <button type="submit">Оставить комментарий</button>
     
