@@ -38,18 +38,13 @@ def search(request):
 def proba(request):
     return HttpResponse('ok')
 
-def menu():
-    categoru_list = Categoru.objects.all()
-    return categoru_list
-
 def detail(request, review_id):
-    categoru_list = menu()
     try:
         a = Review.objects.get(id = review_id)
         comment_list = a.comment_set.order_by('id')[:10]
     except:
         raise Http404('Отзыв не найден')
-    return render(request, 'reviews/detail.html', {'review': a, 'comment_list': comment_list, 'categoru_list': categoru_list})
+    return render(request, 'reviews/detail.html', {'review': a, 'comment_list': comment_list})
 
 def leave_comment(request, review_id):
     try:
