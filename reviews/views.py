@@ -24,29 +24,7 @@ class ReviewDeleteView(DeleteView):
 
 def index(request):
     reviews_list = Review.objects.all()
-    list_like = []
-    for elem in reviews_list:
-        a = Raiting.objects.filter(like = True, review_raiting = elem.id).aggregate(Sum('like'))
-        star = Raiting.objects.filter(review_raiting = elem.id)
-        star = [i.star for i in star if i.star != 0] 
-        if len(star) >= 1:
-            star = round(sum(star) / len(star), 1)
-        else:
-            star = 0
-        a['id'] = elem.id
-        a['review_title'] = elem.review_title
-        a['image'] = elem.image
-        a['author_name'] = elem.author_name
-        a['rait'] = elem.rait
-        a['review_text'] = elem.review_text
-        a['star'] = star
-        a['star_len'] = str(round(star / 0.05)) + '%'
-        list_like.append(a)
-
-    a = list_like
-    categoru_list = menu()
-    
-    return render(request, 'reviews/index.html', {'reviews_list': reviews_list, 'categoru_list': categoru_list, 'a': a})
+    return render(request, 'reviews/index.html', {'reviews_list': reviews_list})
 
 def proba(request):
     return HttpResponse('ok')

@@ -20,22 +20,23 @@
          
          {% endfor %}
       </div>
-      {% for elem in a %}
-            
+      {% for elem in reviews_list %}
+            {% like elem.id as like %}
+            {% star elem.id as star %}
             <div class="col">
                <div class="card">
                  <img src="https://res.cloudinary.com/djx4fzf78/image/upload/v1638006554/{{elem.image}}" class="card-img-top">
                  <div class="card-body">
-                   <h5 class="card-title"><a href = "{{elem.id}}">{{elem.review_title}}</a></h5>
+                   <h5 class="card-title"><a href = "/{{elem.id}}">{{elem.review_title}}</a></h5>
 
                            <p>
                               Автор: {{elem.author_name}} | 
                               Оценка автора: {{elem.rait}} / 10 | 
                               Кол-во лайков: 
-                              {% if elem.like__sum == None %}
+                              {% if like == None %}
                                  0
                               {% else %}
-                                 {{ elem.like__sum }}
+                                 {{ like }}
                               {% endif %}
                            </p>
                      
@@ -51,7 +52,13 @@
                                           <input type = "radio" class = "raiting_item" value = "1">
                                           <input type = "radio" class = "raiting_item" value = "1">
                                           
-                                          <div class = "raiting__value" id = "rating_value">{{elem.star}}</div>
+                                          <div class = "raiting__value" id = "rating_value">
+                                            {% if star == None %}
+                                                0
+                                            {% else %}
+                                                {{ star }}
+                                            {% endif %}
+                                          </div>
                                        </div>
                                     </div>
                                  </div>
