@@ -3,7 +3,7 @@
     margin: 10px;
     width: 80%;
     left: 10%;
-    background: rgb(218, 218, 218);
+    background: rgb(88, 85, 85);
     color: rgb(0, 0, 0);
 }
 
@@ -27,7 +27,7 @@ body { margin: 0; }
 
 #content {
     position: absolute;
-    top: 50px;
+    top: auto;
     width: 80%;
     left: 10%; /* Расстояние от левого края */ 
     background: #fff;
@@ -36,4 +36,12 @@ body { margin: 0; }
 .container-fluid {
     position: relative;
     left: 10%;
+}
+
+/* Меню */
+
+.navbar {
+    position: absolute;
+    width: 100%;
+    color: #000;
 }

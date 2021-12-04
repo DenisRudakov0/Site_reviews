@@ -1,6 +1,6 @@
 /* Настройки для темной темы rgb(45, 40, 48 */
 body {
-    background: rgb(255, 255, 255);
+    background: rgb(45, 40, 48);
     
 }
 
@@ -21,63 +21,11 @@ hr {
     color: rgb(36, 36, 36);
 }
 
-/* Звезды */
-.raiting {
-    display: flex;
-    align-items: flex-end;
-    font-size: 40px;
-    line-height: 0.75;
-}
 
-.raiting_body {
+.navigation {
     position: relative;
-}
-
-.raiting_body::before{
-    content: "★★★★★";
-    color: rgb(231, 231, 231);
-    display: block;
-}
-
-.raiting_items {
-    display: flex;
-    position: absolute;
     width: 100%;
-    height: 100%;
-    top: -7px;
-    left: 0;
-}
-
-.raiting_item {
-    flex: 0 0 20%;
-    height: 100%;
-    opacity: 0;
-}
-
-.raiting_active {
-    position: absolute;
-    width: 0%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    overflow: hidden;
-}
-
-.raiting_active::before {
-    content: "★★★★★";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    color: yellow;
-}
-
-.raiting__value {
-    font-size: 50%;
-    line-height: 1;
-    padding: 15px 0px 0px 10px;
-    color: rgb(218, 218, 218);
+    float: left;
 }
 
 /* Настройка карточек */
@@ -94,10 +42,4 @@ hr {
     background-clip: border-box;
     border: 1px solid rgba(0,0,0,.125);
     border-radius: .25rem;
-}
-
-.categoru {
-    width: 19%; 
-    flex: left; 
-    display: inline-block;
 }
