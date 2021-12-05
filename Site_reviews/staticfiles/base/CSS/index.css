@@ -74,18 +74,108 @@ hr {
     border-radius: .25rem;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 2000px) {
+    .categoru {
+        width: 19%;
+        padding: 3px;
+    }
+
+    .navigation {
+        padding-bottom: 10px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .categoru {
+        width: 19%;
+        padding: 3px;
+    }
+
+    .navigation {
+        padding-bottom: 10px;
+    }
+
     .post_data {
         position: relative;
         width: 90%;
-        height: auto;
-        clear: both;
-        left: 5%;
-        top: 20px;
-        padding: 10px 10px 10px 10px;
-        margin-bottom: 20px;
+        padding-right: 5%;
+    }
+}
+
+@media (max-width: 992px) {
+    .categoru {
+        width: 24%;
+        padding: 3px;
     }
 
+    h2 {
+        font-size: 25px;
+    }
+
+    h3 {
+        font-size: 25px;
+    }
+
+    .navigation {
+        padding-bottom: 10px;
+    }
+
+    p {
+        font-size: 16px;
+        margin-bottom: 0.7em;
+    }
+}
+
+@media (max-width: 768px) {
+    .categoru {
+        width: 24%;
+        padding: 3px;
+    }
+
+    h2 {
+        font-size: 25px;
+    }
+
+    h3 {
+        font-size: 25px;
+    }
+
+    .navigation {
+        padding-bottom: 10px;
+    }
+
+    p {
+        font-size: 15px;
+        margin-bottom: 0.7em;
+    }
+}
+
+@media (max-width: 576px) {
+    .categoru {
+        width: 29%;
+        padding: 4px;
+    }
+
+    h2 {
+        font-size: 23px;
+        text-align: center;
+    }
+
+    h3 {
+        font-size: 23px;
+    }
+
+    .navigation {
+        padding-bottom: 15px;
+    }
+
+    p {
+        font-size: 15px;
+        margin-bottom: 0.5em;
+    }
+}
+
+@media (max-width: 400px) {
     h2 {
         font-size: 20px;
         text-align: center;
@@ -95,10 +185,13 @@ hr {
         font-size: 20px;
     }
 
+    .navigation {
+        padding-bottom: 10px;
+    }
+
     .categoru {
-        text-align: center;
         width: 49%;
-        display:inline-block;
+        padding: 5px;
     }
 
     body {
@@ -107,7 +200,18 @@ hr {
 
     p {
         font-size: 13px;
+        margin-bottom: 0.3em;
+    }
+
+    .param {
+        bottom: 0px;
+    }
+
+    .prev {
+        display: none;
     }
 }
+
+
 
 

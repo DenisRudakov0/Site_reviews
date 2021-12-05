@@ -54,6 +54,15 @@ body { margin: 0; }
 
 .show {display: block;}
 
+@media (max-width: 576px) {
+    #content {
+        position: absolute;
+        top: auto;
+        width: 90%;
+        left: 5%; 
+    }
+}
+
 @media (max-width: 400px) {
     #content {
         position: absolute;
@@ -62,3 +71,4 @@ body { margin: 0; }
         left: 3%; 
     }
 }
+
