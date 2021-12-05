@@ -40,10 +40,6 @@ hr {
 }
 
 /* Настройка карточек */
-.title {
-    left: 50px;
-}
-
 .post_data {
     position: relative;
     width: 90%;
@@ -78,10 +74,40 @@ hr {
     border-radius: .25rem;
 }
 
-@media (max-width: 767px) {
-    
+@media (max-width: 400px) {
+    .post_data {
+        position: relative;
+        width: 90%;
+        height: auto;
+        clear: both;
+        left: 5%;
+        top: 20px;
+        padding: 10px 10px 10px 10px;
+        margin-bottom: 20px;
+    }
+
+    h2 {
+        font-size: 20px;
+        text-align: center;
+    }
+
+    h3 {
+        font-size: 20px;
+    }
+
+    .categoru {
+        text-align: center;
+        width: 49%;
+        display:inline-block;
+    }
+
+    body {
+        background: rgb(255, 255, 255);
+    }
+
+    p {
+        font-size: 13px;
+    }
 }
 
-@media (max-height: 500px) {
 
-}

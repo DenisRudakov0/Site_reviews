@@ -11,6 +11,7 @@
    {% if reviews_list %}
    <div class="">
       {% menu_categoru as menu %}
+      <h2>Категории:</h2>
       <div class = "navigation">
          {% for elem in menu %}
 
@@ -20,7 +21,7 @@
          
          {% endfor %}
       </div>
-      <h2>Последние добавленные отзывы:</h3>
+      <h2>Последние добавленные отзывы:</h2>
       {% for elem in latest_post %}
          {% like elem.id as like %}
          {% star elem.id as star %}
