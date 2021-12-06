@@ -26,8 +26,8 @@ class ReviewDeleteView(DeleteView):
     DeleteViewate_name = "reviews/delete.html"
 
 def index(request):
-    reviews_list = Review.objects.order_by('-pub_date')
-    latest_post = Review.objects.order_by('-pub_date')[:5]
+    reviews_list = Review.objects.filter(publish = True).order_by('-pub_date')
+    latest_post = Review.objects.filter(publish = True).order_by('-pub_date')[:6]
     return render(request, 'reviews/index.html', {'reviews_list': reviews_list, 'latest_post': latest_post})
 
 def search(request):

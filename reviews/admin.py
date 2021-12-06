@@ -3,10 +3,11 @@ from .models import Review, Comment, Raiting, ReviewImage, Categoru
 
 @admin.register(Review)
 class ReviewAdmin(admin.ModelAdmin):
-    list_display = ('review_title', 'slug', 'author_name', 'pub_date')
+    list_display = ('review_title', 'slug', 'author_name', 'pub_date', 'publish')
     prepopulated_fields = {'slug': ('review_title', 'author_name')}
     search_fields = ('review_title', 'review_text')
     raw_id_fields = ('author_name',)
+    list_filter = ('publish',)
 
 @admin.register(Categoru)
 class CategoruAdmin(admin.ModelAdmin):

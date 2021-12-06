@@ -5,7 +5,7 @@ register = template.Library()
 
 @register.simple_tag()
 def get_review(name):
-    return Review.objects.filter(author_name = name)
+    return Review.objects.filter(author_name = name, publish = True)
 
 @register.simple_tag()
 def star(id):
@@ -33,5 +33,5 @@ def menu_categoru():
 
 @register.filter()
 def latest_posts():
-    posts = Review.objects.order_by('-pub_date')[:5]
+    posts = Review.objects.filter(publish = True).order_by('-pub_date')[:6]
     return posts

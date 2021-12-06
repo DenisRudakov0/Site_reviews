@@ -16,6 +16,7 @@ class Review(models.Model):
     slug = models.SlugField(blank=True)
     prev_text = models.TextField('Превью текст', max_length = 400, default = '')
     review_text = models.TextField('текст отзыва')
+    publish = models.BooleanField(default = True)
     rait = models.IntegerField(choices = RATE_AUTHOR_CHOISES, default=1)
     image = models.ImageField(upload_to='images/', blank=True)
     pub_date = models.DateTimeField('Дата публикации', default = timezone.now)
@@ -27,7 +28,6 @@ class Review(models.Model):
 
     def get_absolute_url(self):
         return f'/accounts/profile/'
-    
 
 class ReviewImage(models.Model):
     image = models.ForeignKey(Review, on_delete=models.CASCADE)
