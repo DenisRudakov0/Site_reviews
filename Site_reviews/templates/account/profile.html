@@ -7,36 +7,38 @@
 {% endblock %}
 {% block content %}
     <div class = "container">
-        <div id = "user_sidebar">
-            {% if request.user.is_authenticated %}
-                <div id="sidebar">
-                    <img src = "https://avatarfiles.alphacoders.com/112/112888.jpg" width = "150px">
-                    <p>{{ request.user.username }}</p>
-                    <a href = "#">Настройки</a>
-                    <br>
-                    <a href = "#">Выйти</a>
-                </div>
-            {% else %}
-                <div id="sidebar">
-                    <p>no</p>
-                </div>
-            {% endif %}
+        <div id = "user_sidebar" class = "d-none d-lg-block">
+            <div id="sidebar">
+                <img src = "https://avatarfiles.alphacoders.com/112/112888.jpg" width = "150px">
+                <p>{{ request.user.username }}</p>
+                <a href = "#">Настройки</a>
+                <br>
+                <a href = "{% url 'logout' %}">Выйти</a>
+            </div>
         </div>
         <div id = "review_option">
-            {% get_review user.id as review %}
+            {% get_review_profile user.id as review %}
             
             <a href = "/new/{{user.id}}">Добавить отзыв<img src = "https://res.cloudinary.com/djx4fzf78/image/upload/v1638466912/image/document_add_256_icon-icons.com_75994_bkyfkv.png" width = "20px"></img></a>
 
             <br>
             <table class="table table-hover">
                 <tr class="table-dark">
-                    <td colspan="3">Ваши отзывы</td>
+                    <td colspan="1"><p>Ваши отзывы</p></td>
+                    <td colspan="1"><p>Статус</p></td>
+                    <td colspan="1"><p>Изменение</p></td>
+                    <td colspan="1"><p>Удаление</p></td>
                 </tr>
                 {% for elem in review %}
                     <tr>
                         <td><a href = "/{{elem.id}}">{{elem.review_title}}</a></td>
-                        <td><a href = "/new/{{elem.id}}/update/"><img src = "https://res.cloudinary.com/djx4fzf78/image/upload/v1638463840/image/notes_115548_bds0ec.png" width = "20px"></img></a></td>   
-                        <td><a href = "/new/{{elem.id}}/delete/"><img src ="https://res.cloudinary.com/djx4fzf78/image/upload/v1638464176/image/Adblock_stop_delete_delete_exit_7057_qgqy1g.png" width = "20px"></img></a></td>          
+                        {% if elem.publish == True %}
+                            <td class = "icon"><img src = "https://res.cloudinary.com/djx4fzf78/image/upload/v1638788893/image/publ_xeacc6.png" class = "im" alt = "Опубликовано"></img></td>
+                        {% else %}
+                            <td class = "icon"><img src = "https://res.cloudinary.com/djx4fzf78/image/upload/v1638788893/image/moder_cwmv2x.png" class = "im" alt = "На модерации"></img></td>
+                        {% endif %}
+                        <td class = "icon"><a href = "/new/{{elem.id}}/update/"><img src = "https://res.cloudinary.com/djx4fzf78/image/upload/v1638463840/image/notes_115548_bds0ec.png" class = "im"></img></a></td>    
+                        <td class = "icon"><a href = "/new/{{elem.id}}/delete/"><img src ="https://res.cloudinary.com/djx4fzf78/image/upload/v1638464176/image/Adblock_stop_delete_delete_exit_7057_qgqy1g.png" class = "im"></img></a></td>          
                     </tr>
                 {% endfor %}
             </table>

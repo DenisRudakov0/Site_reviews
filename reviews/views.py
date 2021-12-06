@@ -133,7 +133,7 @@ def reviews_add(request, review_id):
             for elem in image_push:
                 add_image = ReviewImage(image_push = elem, image = Review.objects.get(id = id))
                 add_image.save()
-        return HttpResponse(data)        
+        return redirect("/accounts/profile")        
     else:
         error = 'Неверная форма'
     form = ReviewForm()

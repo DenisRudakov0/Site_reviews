@@ -8,6 +8,10 @@ def get_review(name):
     return Review.objects.filter(author_name = name, publish = True)
 
 @register.simple_tag()
+def get_review_profile(name):
+    return Review.objects.filter(author_name = name)
+
+@register.simple_tag()
 def star(id):
     star = Raiting.objects.filter(review_raiting = id)
     if star.count() > 0:
