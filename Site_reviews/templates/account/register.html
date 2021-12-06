@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %}Create an account{% endblock %}
+{% block title %}Создание нового пользователя{% endblock %}
 {% block content %}
-    <h1>Create an account</h1>
-    <p>Please, sign up using the following form:</p>
+    <h1>Создание нового пользователя</h1>
+    <p>Пожалуйста, зарегистрируйтесь, используя следующую форму:</p>
     <form action="." method="post">
         {{ user_form.as_p }}
         {% csrf_token %}
-        <p><input type="submit" value="Create my account"></p>
+        <p><input type="submit" value="Создать новый аккаунт" class = "btn btn-outline-success"></p>
     </form>
 {% endblock %}
