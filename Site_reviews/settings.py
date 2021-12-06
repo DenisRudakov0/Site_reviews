@@ -187,9 +187,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_WHITELIST = [
-    'https://glacial-dusk-64788.herokuapp.com/',
+    'https://glacial-dusk-64788.herokuapp.com',
 ]
 CORS_ORIGIN_REGEX_WHITELIST = [
-    'https://glacial-dusk-64788.herokuapp.com/',
+    'https://glacial-dusk-64788.herokuapp.com',
 ]
 
