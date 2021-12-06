@@ -1,31 +1,28 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %}Log-in{% endblock %}
+{% block title %}Вход | Профиль{% endblock %}
 {% block style %}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
     <link href="{% static "account/CSS/registration.css" %}" rel="stylesheet" type="text/css">
 {% endblock %}
 {% block content %}
-    <h1>Log-in</h1>
+    <h1>Вход в аккаунт</h1>
     {% if form.errors %}
-        <p>Your username and password didn't match.Please try again.</p>
+        <p>Ваше имя пользователя и пароль не совпадают. Повторите попытку..</p>
     {% else %}
-        <p>Please, use the following form to log-in:</p>
+        <p>Пожалуйста, используйте следующую форму для входа в систему:</p>
     {% endif %}
     <div class="login-form">
         <form action="{% url 'login' %}" method="post">
             {{ form.as_p }}
             {% csrf_token %}
             <input type="hidden" name="next" value="{{ next }}" />
-            <p><input type="submit" value="Log-in"></p>
+            <p><input type="submit" value="Войти" class = "btn btn-outline-success"></p>
         </form>
     </div>
     <div class="social">
-        <ul>
-            <li class="facebook"><a href="{% url "social:begin" "facebook" %}"><img src = "https://res.cloudinary.com/djx4fzf78/image/upload/v1638102408/image/facebook_zegsjc.png"></img></a></li>
-            <br>
-            <li class="google"><a href="{% url "social:begin" "google-oauth2" %}"><img src = "https://res.cloudinary.com/djx4fzf78/image/upload/v1638102408/image/google_ya9hdh.png"></img></a></li>
-        </ul>
+        <p class="facebook"><a href="{% url "social:begin" "facebook" %}"><img src = "https://res.cloudinary.com/djx4fzf78/image/upload/v1638102408/image/facebook_zegsjc.png"></img></a></p>
+        <p class="google"><a href="{% url "social:begin" "google-oauth2" %}"><img src = "https://res.cloudinary.com/djx4fzf78/image/upload/v1638102408/image/google_ya9hdh.png"></img></a></p>
     </div>
     </div>
 {% endblock %}

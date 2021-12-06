@@ -1,3 +1,7 @@
+li {
+    list-style-type: none; /* Убираем маркеры */
+}
+
 @import url(//fonts.googleapis.com/css?family=Montserrat:300,400,500);
 .bform {
  font-family: "Montserrat", sans-serif;
