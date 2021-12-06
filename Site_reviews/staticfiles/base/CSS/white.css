@@ -40,12 +40,73 @@ hr {
     background: #f7f1f7;
 }
 
-/* Profile */
-.icon {
-    text-align: center;
-    width: 10%;
+h1, h2, h3 {
+    color: black;
 }
 
+/* Profile */
 #user_sidebar { 
     border-right: 1px solid #231F20;
+}
+
+/* dark */
+.dark #header {
+    background: #a7a7a7;
+}
+
+/* dark */
+.dark #content {
+    background: #1f081f;;
+    opacity: 70%;
+}
+/* Меню */
+.dark .dropdown-content {
+    background-color: rgb(207, 207, 207);
+}
+
+.dark .dropdown-content a {
+    color: black;
+}
+
+.dark .dropdown a:hover {background-color: rgb(124, 124, 124);}
+
+/* index */
+
+.dark a {
+    text-decoration: none;
+    color: #eeeeee;
+}
+
+.dark a:hover {
+    color: #99d1a7;
+}
+
+.dark p {
+    color: rgb(226, 226, 226);
+}
+
+.dark hr {
+    color: rgb(241, 241, 241);
+}
+
+.dark .post_data {
+    background: #363636;
+}
+
+/* Profile */
+
+.dark #user_sidebar { 
+    border-right: 1px solid #ffffff;
+}
+
+.dark body {
+    background: #1f081f;
+}
+
+.dark h1, h2, h3 {
+    color: rgb(228, 228, 228);
+}
+
+.dark .comment {
+    background: #777777;
 }
