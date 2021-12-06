@@ -12,8 +12,8 @@ from .forms import ReviewForm, ReviewImageForm
 from django.db.models import Q
 from django.core.exceptions import ObjectDoesNotExist
 
+from django.contrib.auth.decorators import login_required
 from django.views.generic import DetailView, UpdateView, DeleteView
-
 
 class ReviewUpdateView(UpdateView):
     model = Review
@@ -99,6 +99,7 @@ def like_count(id):
         data = 0
     return data
 
+@login_required()
 def reviews_add(request, review_id):
     if request.method == 'POST':
         categoru = request.POST.get('categoru')

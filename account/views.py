@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from .forms import LoginForm, UserRegistrationForm
 
+@login_required()
 def index(request):
     return render(request, 'account/profile.html')
 
@@ -16,3 +17,6 @@ def register(request):
     else:
         user_form = UserRegistrationForm()
     return render(request,'account/register.html',{'user_form': user_form})
+
+def reverse_lazy():
+    pass
