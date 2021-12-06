@@ -19,7 +19,7 @@
             {% csrf_token %}
             <input type="hidden" name="next" value="{{ next }}" />
             <p><input type="submit" value="Войти" class = "btn btn-outline-success"></p>
-        </form>>
+        </form>
     </div>
     <div class="social">
         <p class="facebook"><a href="{% url "social:begin" "facebook" %}"><img src = "https://res.cloudinary.com/djx4fzf78/image/upload/v1638102408/image/facebook_zegsjc.png"></img></a></p>

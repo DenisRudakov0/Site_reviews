@@ -2,27 +2,13 @@
 
 #user_sidebar { 
     width: 20%;
-    border-right: 1px solid #231F20; 
-    bottom: 0; /* Расстояние снизу  */
+    bottom: 0; 
    }
 
 #review_option {
     width: 80%;
-    left: 20%; /* Расстояние от левого края */ 
+    left: 20%; 
     bottom: 0; right: 0;
-}
-
-.icon {
-    text-align: center
-}
-
-a { 
-    text-decoration: none;
-    color: green;
-} 
-
-a:hover {
-    color: blueviolet;
 }
 
 .im {

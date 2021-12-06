@@ -4,6 +4,7 @@
 {% block title %}Профиль{% endblock %}
 {% block style %}
     <link href="{% static "account/CSS/profile.css" %}" rel="stylesheet" type="text/css">
+    <link href="{% static "base/CSS/white.css" %}" rel="stylesheet" type="text/css">
 {% endblock %}
 {% block content %}
     <div class = "container">
@@ -22,13 +23,15 @@
             <a href = "/new/{{user.id}}">Добавить отзыв<img src = "https://res.cloudinary.com/djx4fzf78/image/upload/v1638466912/image/document_add_256_icon-icons.com_75994_bkyfkv.png" width = "20px"></img></a>
 
             <br>
-            <table class="table table-hover">
-                <tr class="table-dark">
-                    <td colspan="1"><p>Ваши отзывы</p></td>
-                    <td colspan="1"><p>Статус</p></td>
-                    <td colspan="1"><p>Изменение</p></td>
-                    <td colspan="1"><p>Удаление</p></td>
-                </tr>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td width = "70%"><p>Ваши отзывы</p></td>
+                        <td class = "icon"><p>Статус</p></td>
+                        <td class = "icon"><p>Изменение</p></td>
+                        <td class = "icon"><p>Удаление</p></td>
+                    </tr>
+                </thead>
                 {% for elem in review %}
                     <tr>
                         <td><a href = "/{{elem.id}}">{{elem.review_title}}</a></td>

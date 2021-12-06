@@ -34,9 +34,10 @@ def search(request):
     searc_query = request.GET.get('search', '')
     if searc_query:
         reviews_list = Review.objects.filter(Q(review_title__icontains = searc_query) | Q(review_text__icontains = searc_query) | Q(prev_text__icontains = searc_query))
+        data = {'reviews_list': reviews_list, 'searc_query': searc_query}
     else:
-        HttpResponse('Данных статей не найдено')
-    return render(request, 'reviews/index.html', {'reviews_list': reviews_list})
+        data = 'Отзывов по вашему запросу не найдено'
+    return render(request, 'reviews/index.html', {'data': data})
 
 def proba(request):
     return HttpResponse('ok')

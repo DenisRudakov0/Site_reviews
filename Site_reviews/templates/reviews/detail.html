@@ -7,7 +7,8 @@
 <link href="{% static "reviews/CSS/detail.css" %}" rel="stylesheet" type="text/css">
 <link href="{% static "reviews/CSS/star.css" %}" rel="stylesheet" type="text/css">
 <link href="{% static "reviews/CSS/like.css" %}" rel="stylesheet" type="text/css">
-<link href="{% static "reviews/CSS/comment.css" %}" rel="stylesheet" type="text/css">
+
+<link href="{% static "base/CSS/white.css" %}" rel="stylesheet" type="text/css">
 
 {% endblock  %}
 {% block content %}
@@ -55,7 +56,7 @@
         </form>
         
         <br> 
-        <p>{{review.review_text | markdown | safe}}}</p>
+        <p>{{review.review_text | markdown | safe}}</p>
             
         <p><img src = "https://res.cloudinary.com/djx4fzf78/image/upload/v1638006554/{{review.image}}" width = "200px"></img></p>
         
@@ -80,7 +81,7 @@
             <input type="hidden" required placeholder = "Ваше имя" name="name" value = {{ request.user.username }}><br>
             <textarea name="text" required="" placeholder="Текст комментария" cols="30" rows="10" class = "form-control"></textarea><br>
             
-            <button type="submit">Оставить комментарий</button>
+            <button type="submit" class = "btn btn-outline-success">Оставить комментарий</button>
         
             </form>
         

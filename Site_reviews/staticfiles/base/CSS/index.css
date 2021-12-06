@@ -1,27 +1,4 @@
 /* Настройки для темной темы rgb(45, 40, 48 */
-body {
-    background: rgb(45, 40, 48);
-    
-}
-
-a {
-    text-decoration: none;
-    color: #198754;
-}
-
-a:hover {
-    color: #5a2970;
-}
-
-p {
-    color: rgb(36, 36, 36);
-}
-
-hr {
-    color: rgb(36, 36, 36);
-}
-
-
 .navigation {
     position: relative;
     width: 100%;
@@ -49,7 +26,6 @@ hr {
     top: 20px;
     padding: 10px 10px 10px 10px;
     margin-bottom: 20px;
-    background: #f7f1f7;
 }
 
 .image_post {
@@ -57,21 +33,6 @@ hr {
     height: auto;
     float: left;
     margin-bottom: 20px;
-}
-
-.card {
-    position: relative;
-    float: left;
-    width: 29%;
-    margin: 1%;
-    display: inline-block;
-    flex-direction: column;
-    min-width: 0;
-    word-wrap: break-word;
-    background-color: #fff;
-    background-clip: border-box;
-    border: 1px solid rgba(0,0,0,.125);
-    border-radius: .25rem;
 }
 
 @media (max-width: 2000px) {
@@ -202,10 +163,6 @@ hr {
     .categoru {
         width: 49%;
         padding: 5px;
-    }
-
-    body {
-        background: rgb(255, 255, 255);
     }
 
     p {
