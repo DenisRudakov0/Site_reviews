@@ -18,7 +18,7 @@ function PushRait(value) {
 
 function sendRaitAjax(id_user, id_review, value) {
     $.ajax({
-        url:    "http://127.0.0.1:8000/reviews/star/" + id_user + ':' + id_review + ':' + value, //url страницы (action_ajax_form.php)
+        url:    "https://glacial-dusk-64788.herokuapp.com/reviews/star/" + id_user + ':' + id_review + ':' + value, //url страницы (action_ajax_form.php)
         type:    "GET", //метод отправки
         dataType: "html", //формат данных
         
