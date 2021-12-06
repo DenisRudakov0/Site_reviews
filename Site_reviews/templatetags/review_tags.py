@@ -39,3 +39,8 @@ def menu_categoru():
 def latest_posts():
     posts = Review.objects.filter(publish = True).order_by('-pub_date')[:6]
     return posts
+
+@register.filter()
+def list_img(id):
+    img_list = ReviewImage.objects.filter(image = id)
+    return(img_list)
