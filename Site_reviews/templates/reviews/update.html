@@ -18,28 +18,35 @@
 {% endblock %}
 {% block content %}
    {% if request.user.is_authenticated %}
-      <form action = '' method = "POST" enctype="multipart/form-data">
-         {% csrf_token %}
-         <p>Категория отзыва</p>
-         {{ form.categoru }}<br>
-         <p>Оценка автора</p>
-         {{ form.rait }}<br>
-         <p>Название</p>
-         {{ form.review_title }}<br>
-         <p>Превью Текст</p>
-         {{ form.prev_text }}<br>
-         <p>Текст отзыва</p>
-         {{ form.review_text }}<br>
-         <p>Фото на обложку</p>
-         {{ form.image }}<br>
-         <p>Дата публикации</p>
-         {{ form.pub_date }}<br>
-         
-
-         <p><input type="submit"></p>
-      </form>
+    {% if form.author_name.value == request.user.id %}
+        <form action = '' method = "POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <p>Категория отзыва</p>
+            {{ form.categoru }}<br>
+            <p>Оценка автора</p>
+            {{ form.rait }}<br>
+            <p>Название</p>
+            {{ form.review_title }}<br>
+            <p>Превью Текст</p>
+            {{ form.prev_text }}<br>
+            <p>Текст отзыва</p>
+            {{ form.review_text }}<br>
+            <p>Фото на обложку</p>
+            {{ form.image }}<br>
+            <p>Дата публикации</p>
+            {{ form.pub_date }}<br>       
+            <p><input type="submit" class = "btn btn-outline-success"></p>
+        </form>
+    {% else %}
+        <h3>Вы пытаетесь совершить подозрительное действие для которого у вас недостаточно прав!!!</h3>
+        <center>
+            <img src = "https://res.cloudinary.com/djx4fzf78/image/upload/v1638776910/image/mne-kazhetsya-ili-frai-futurama_60089001_orig__prwbbe.jpg" width = "50%"></img>
+        </center>
+    {% endif %}
+      
    {% else %}
-      Для возможности создания отзыва необходимо войти в аккаунт
+      Для возможности создания отзыва необходимо войти в аккаунт 
+      <p><button type="submit" class = "btn btn-outline-success"></button></p>
    {% endif %}   
 
    
